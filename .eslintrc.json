@@ -1,0 +1,25 @@
+{
+  "plugins": ["prettier", "react"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-console": ["off"],
+    "react/jsx-uses-vars": 1,
+    "react/jsx-uses-react": 1,
+    "@typescript-eslint/indent": "ingore",
+    "prettier/prettier": "error",
+    "@typescript-eslint/camelcase": false,
+    "@typescript-eslint/no-non-null-assertion": false,
+    "@typescript-eslint/no-explicit-any": false,
+    "@typescript-eslint/array-type": ["warn", "array-simple"],
+    "@typescript-eslint/prefer-interface": false,
+    "@typescript-eslint/no-var-requires": false,
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      { "allowExpressions": true }
+    ],
+    "@typescript-eslint/no-parameter-properties": false
+  }
+}

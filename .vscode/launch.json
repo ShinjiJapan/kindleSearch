@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // デバッグ設定の名称
+            "name": "localHost",
+            // デバッグ種別を指定（chrome/node/monoなど）
+            "type": "chrome",
+            // lanunchまたはattachを指定
+            "request": "launch",
+            // Webサーバー上にあるデバッグ対象のURLを指定
+            "url": "https://localhost:3000",
+            // マッピングするローカルファイルが配置されているディレクトリを指定
+            "webRoot": "${workspaceRoot}/",
+            // ソースマップの有効・無効の指定（true/false）
+            "sourceMaps": true
+        }
+    ]
+}
