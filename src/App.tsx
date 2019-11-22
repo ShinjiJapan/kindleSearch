@@ -4,7 +4,6 @@ import { appVM } from "./AppVM";
 import BookItem from "./components/bookItem/BookItem";
 import styled from "styled-components";
 import ToolBar from "./components/toolbar/ToolBar";
-import "./App.css";
 import Footer from "./components/footer/Footer";
 import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
 initializeIcons(/* optional base url */);

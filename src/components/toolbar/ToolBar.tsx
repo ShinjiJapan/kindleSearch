@@ -42,7 +42,7 @@ const ToolBar = (): React.ReactElement => {
 
 const AmazonCondition = styled.div`
   display: grid;
-  grid-template-columns: 310px 200px 170px 100px;
+  grid-template-columns: 310px 200px 180px 100px;
   align-items: center;
   height: 100%;
 `;
