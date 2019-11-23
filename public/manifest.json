@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "1.2",
+  "version": "1.4",
   "name": "Kindle Search",
   "description": "kindle検索",
   "browser_action": {
@@ -8,15 +8,10 @@
     "default_popup": "index.html"
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
+    "scripts": ["background.js"],
     "persistent": false
   },
-  "permissions": [
-    "activeTab",
-    "https://www.amazon.co.jp/"
-  ],
+  "permissions": ["activeTab", "https://www.amazon.co.jp/"],
   "icons": {
     "16": "icon.png",
     "48": "icon.png",

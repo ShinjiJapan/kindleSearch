@@ -15,7 +15,5 @@ const AmazonSortDropdown = (): React.ReactElement => {
 export default React.memo(AmazonSortDropdown);
 
 const SearcBoxWrapper = styled.div`
-  width: 300px;
-  padding-left: 10px;
-  margin-right: 4px;
+  padding-left: 4px;
 `;

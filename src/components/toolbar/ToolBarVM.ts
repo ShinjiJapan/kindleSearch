@@ -8,6 +8,7 @@ import { AmazonSearchWordVM } from "./AmazonSearchWordVM";
 import { UnlimitedOnlyCheckboxVM } from "./UnlimitedOnlyCheckboxVM";
 import { ExecFilterTextFieldVM } from "./ExecFilterTextFieldVM";
 import { LocalSorterVM } from "./LocalSorterVM";
+import TermVM from "./TermVM";
 
 export default class ToolBarVM extends BindableBase {
   /** amazon検索ワード */
@@ -64,6 +65,22 @@ export default class ToolBarVM extends BindableBase {
     appVM.onPropertyChanged(); // ●循環参照！パラメータで受け取るとか
   };
 
+  private get createQueryDateString(): string {
+    const from = this.fromDateVM.value;
+    const to = this.toDateVM.value;
+    if (!from && !to) return "";
+    return `,p_n_date:${this.toYYYYMMDD(from)}-${this.toYYYYMMDD(to)}`;
+  }
+
+  private toYYYYMMDD = (date?: Date): string => {
+    if (!date) return "";
+    return (
+      date.getFullYear().toString() +
+      ("0" + (date.getMonth() + 1)).slice(-2) +
+      ("0" + date.getDate()).slice(-2)
+    );
+  };
+
   public virtualPageCount = -1;
   /** 1ページ取得 */
   private getPageAsync = async (page: number): Promise<BookItemModel[]> => {
@@ -71,7 +88,8 @@ export default class ToolBarVM extends BindableBase {
       page,
       this.amazonSearchWordVM.value,
       this.amazonSortDropdownVM.selectedKey || "",
-      this.unlimitedOnlyCheckboxVM.checked
+      this.unlimitedOnlyCheckboxVM.checked,
+      this.createQueryDateString
     );
     const result = parse.exec(response);
 
@@ -185,4 +203,7 @@ export default class ToolBarVM extends BindableBase {
       )
     );
   };
+
+  public fromDateVM = new TermVM();
+  public toDateVM = new TermVM();
 }

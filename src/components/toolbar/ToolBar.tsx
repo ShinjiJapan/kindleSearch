@@ -9,6 +9,7 @@ import LocalMuteWord from "./LocalMuteWord";
 import UnlimitedOnlyCheckbox from "./UnlimitedOnlyCheckbox";
 import LocalSearchWord from "./LocalSearchWord";
 import LocalSorter from "./LocalSorter";
+import Term from "./Term";
 
 initializeIcons(/* optional base url */);
 
@@ -23,6 +24,9 @@ const ToolBar = (): React.ReactElement => {
           <AmazonSearchWord />
           <AmazonSortDropdown />
           <UnlimitedOnlyCheckbox />
+          <Term fromTo="from" />
+          <span>～</span>
+          <Term fromTo="to" />
           <SearchButton text="検索" onClick={() => viewModel.onSearchAsync()} />
         </AmazonCondition>
       </Wrapper>
@@ -42,14 +46,14 @@ const ToolBar = (): React.ReactElement => {
 
 const AmazonCondition = styled.div`
   display: grid;
-  grid-template-columns: 310px 200px 180px 100px;
+  grid-template-columns: 250px 200px 180px 120px auto 120px 100px;
   align-items: center;
   height: 100%;
 `;
 
 const LocalCondition = styled.div`
   display: grid;
-  grid-template-columns: 130px 200px 50px 200px 100px 1fr;
+  grid-template-columns: 110px 180px 50px 180px 90px 80px;
   align-items: center;
   height: 100%;
 `;

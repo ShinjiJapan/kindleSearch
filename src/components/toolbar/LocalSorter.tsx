@@ -12,6 +12,6 @@ export default React.memo(LocalSorter);
 
 const SortDropDown = styled(Dropdown)`
   margin-right: 10px;
-  width: 200px;
+  width: 120px;
   text-align: left;
 `;
