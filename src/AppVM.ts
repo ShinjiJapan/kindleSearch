@@ -7,38 +7,38 @@ export default class AppVM extends BindableBase {
     new Promise(resolve => setTimeout(resolve, msec));
 
   public onGetMorePageClicked = async () => {
-    await this.searchPanelContentVM.getMorePageAsync();
+    await this.toolBarVM.getMorePageAsync();
     this.onPropertyChanged();
   };
 
   public get pagenation(): string {
     return (
-      this.searchPanelContentVM.virtualCurrentPage +
+      this.toolBarVM.virtualCurrentPage +
       " / " +
-      this.searchPanelContentVM.virtualPageCount
+      this.toolBarVM.virtualPageCount
     );
   }
 
   public get pageCount(): number {
-    return this.searchPanelContentVM.pageCount;
+    return this.toolBarVM.pageCount;
   }
 
   public set pageCount(val: number) {
-    this.searchPanelContentVM.pageCount = val;
+    this.toolBarVM.pageCount = val;
   }
 
   public get hasMorePage(): boolean {
-    return this.searchPanelContentVM.hasMorePage;
+    return this.toolBarVM.hasMorePage;
   }
 
   public get filteredBooks(): BookItemModel[] {
-    return this.searchPanelContentVM.filteredBooks;
+    return this.toolBarVM.filteredBooks;
   }
 
   public get isProgress(): boolean {
-    return this.searchPanelContentVM.isProgress;
+    return this.toolBarVM.isProgress;
   }
 
-  public searchPanelContentVM: ToolBarVM = new ToolBarVM();
+  public toolBarVM: ToolBarVM = new ToolBarVM();
 }
 export const appVM: AppVM = new AppVM();

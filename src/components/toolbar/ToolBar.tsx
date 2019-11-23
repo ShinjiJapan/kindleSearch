@@ -10,11 +10,12 @@ import UnlimitedOnlyCheckbox from "./UnlimitedOnlyCheckbox";
 import LocalSearchWord from "./LocalSearchWord";
 import LocalSorter from "./LocalSorter";
 import Term from "./Term";
+import CategorySelector from "./CategorySelector";
 
 initializeIcons(/* optional base url */);
 
 const ToolBar = (): React.ReactElement => {
-  const viewModel = appVM.searchPanelContentVM;
+  const viewModel = appVM.toolBarVM;
   viewModel.useBind();
 
   return (
@@ -24,6 +25,7 @@ const ToolBar = (): React.ReactElement => {
           <AmazonSearchWord />
           <AmazonSortDropdown />
           <UnlimitedOnlyCheckbox />
+          <CategorySelector />
           <Term fromTo="from" />
           <span>～</span>
           <Term fromTo="to" />
@@ -46,14 +48,14 @@ const ToolBar = (): React.ReactElement => {
 
 const AmazonCondition = styled.div`
   display: grid;
-  grid-template-columns: 250px 200px 180px 120px auto 120px 100px;
+  grid-template-columns: 200px 200px 180px 150px 120px auto 120px 100px;
   align-items: center;
   height: 100%;
 `;
 
 const LocalCondition = styled.div`
   display: grid;
-  grid-template-columns: 110px 180px 50px 180px 90px 80px;
+  grid-template-columns: 110px 170px 50px 170px 90px 76px;
   align-items: center;
   height: 100%;
 `;

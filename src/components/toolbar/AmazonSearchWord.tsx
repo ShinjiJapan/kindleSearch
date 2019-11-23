@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { appVM } from "../../AppVM";
 import { SearchBox } from "office-ui-fabric-react/lib/components/SearchBox/SearchBox";
 const AmazonSortDropdown = (): React.ReactElement => {
-  const viewModel = appVM.searchPanelContentVM.amazonSearchWordVM;
+  const viewModel = appVM.toolBarVM.amazonSearchWordVM;
   viewModel.useBind();
   return (
     <SearcBoxWrapper>

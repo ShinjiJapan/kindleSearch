@@ -8,12 +8,6 @@ export class UnlimitedOnlyCheckboxVM extends BindableBase {
 
   public label = "Unlimited対象作品のみ";
   public checked = false;
-  // public get checked(): boolean {
-  //   return localStorage.getItem("isUnlimitedOnly") === "true";
-  // }
-  // public set checked(value: boolean) {
-  //   localStorage.setItem("isUnlimitedOnly", (value === true).toString());
-  // }
 
   public onChange = (
     ev?: React.FormEvent<HTMLElement | HTMLInputElement>,

@@ -59,16 +59,19 @@ class Proxy {
     searchWord: string,
     sortKey: string,
     isUnlimitedOnly: boolean,
-    queryDateString: string
+    queryDateString: string,
+    categoryID: string
   ): Promise<string> => {
     const params: {
       [key: string]: string;
     } = {};
     params["k"] = searchWord;
     params["rh"] = isUnlimitedOnly
-      ? "n:2250738051,p_n_feature_nineteen_browse-bin:3169286051" +
+      ? "n:" +
+        categoryID +
+        ",p_n_feature_nineteen_browse-bin:3169286051" +
         queryDateString
-      : "n:2250738051" + queryDateString;
+      : "n:" + categoryID + queryDateString;
 
     params["i"] = "digital-text";
 

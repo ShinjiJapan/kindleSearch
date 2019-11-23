@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { appVM } from "../../AppVM";
 import { TextField } from "office-ui-fabric-react/lib/components/TextField/TextField";
 const LocalMuteWord = (): React.ReactElement => {
-  const viewModel = appVM.searchPanelContentVM.localMuteWordVM;
+  const viewModel = appVM.toolBarVM.localMuteWordVM;
   viewModel.useBind();
   return <MuteTextField {...viewModel} />;
 };

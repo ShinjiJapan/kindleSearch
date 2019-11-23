@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Dropdown } from "office-ui-fabric-react/lib/components/Dropdown/Dropdown";
 import { appVM } from "../../AppVM";
 const LocalSorter = (): React.ReactElement => {
-  const viewModel = appVM.searchPanelContentVM.localSorterVM;
+  const viewModel = appVM.toolBarVM.localSorterVM;
   viewModel.useBind();
   return <SortDropDown {...viewModel} />;
 };

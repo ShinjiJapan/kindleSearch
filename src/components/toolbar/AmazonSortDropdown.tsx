@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Dropdown } from "office-ui-fabric-react/lib/components/Dropdown/Dropdown";
 import { appVM } from "../../AppVM";
 const AmazonSortDropdown = (): React.ReactElement => {
-  const viewModel = appVM.searchPanelContentVM.amazonSortDropdownVM;
+  const viewModel = appVM.toolBarVM.amazonSortDropdownVM;
   viewModel.useBind();
   return <SortDropDown {...viewModel} />;
 };

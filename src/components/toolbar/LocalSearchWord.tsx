@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { appVM } from "../../AppVM";
 import { TextField } from "office-ui-fabric-react/lib/components/TextField/TextField";
 const LocalSearchWord = (): React.ReactElement => {
-  const viewModel = appVM.searchPanelContentVM.localSearchWrodVM;
+  const viewModel = appVM.toolBarVM.localSearchWrodVM;
   viewModel.useBind();
   return <SearchTextField {...viewModel} />;
 };

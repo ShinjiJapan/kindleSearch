@@ -9,6 +9,7 @@ import { UnlimitedOnlyCheckboxVM } from "./UnlimitedOnlyCheckboxVM";
 import { ExecFilterTextFieldVM } from "./ExecFilterTextFieldVM";
 import { LocalSorterVM } from "./LocalSorterVM";
 import TermVM from "./TermVM";
+import CategorySelectorVM from "./CategorySelectorVM";
 
 export default class ToolBarVM extends BindableBase {
   /** amazon検索ワード */
@@ -89,7 +90,8 @@ export default class ToolBarVM extends BindableBase {
       this.amazonSearchWordVM.value,
       this.amazonSortDropdownVM.selectedKey || "",
       this.unlimitedOnlyCheckboxVM.checked,
-      this.createQueryDateString
+      this.createQueryDateString,
+      this.categorySelectorVM.selectedKey
     );
     const result = parse.exec(response);
 
@@ -206,4 +208,5 @@ export default class ToolBarVM extends BindableBase {
 
   public fromDateVM = new TermVM();
   public toDateVM = new TermVM();
+  public categorySelectorVM = new CategorySelectorVM();
 }
