@@ -86,7 +86,25 @@ class Parse {
 
   /** bookElementから価格を取得 */
   private getPrice = (bookElement: Element): string => {
-    return bookElement.getElementsByClassName("a-offscreen")[0].innerHTML;
+    return (
+      bookElement.getElementsByClassName("a-offscreen")[0].innerHTML +
+      this.getAltPrice(bookElement)
+    );
+  };
+
+  /** 「または、￥301で購入」みたいなやつから本来の価格を抽出 */
+  private getAltPrice = (bookElement: Element): string => {
+    try {
+      const innerHTML = bookElement.getElementsByClassName(
+        "a-section a-spacing-none a-spacing-top-mini"
+      )[0].children[0].children[0].innerHTML;
+
+      const matches = innerHTML.match(/[0-9\,￥]+/g);
+      const match = matches && matches[0] ? matches[0] : "";
+      return match && match !== "1" ? "(" + match + ")" : "";
+    } catch {
+      return "";
+    }
   };
 
   /** bookElementから評価を取得 */
