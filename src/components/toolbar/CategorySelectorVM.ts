@@ -4,13 +4,8 @@ import { DropdownMenuItemType } from "office-ui-fabric-react/lib/components/Drop
 
 const categories: IComboBoxOption[] = [
   {
-    key: "2250738051header",
-    text: "◆Kindle本",
-    itemType: DropdownMenuItemType.Header,
-  },
-  {
     key: "2250738051",
-    text: "Kindle本(ALL)",
+    text: "指定なし",
   },
   {
     key: "2275256051header",

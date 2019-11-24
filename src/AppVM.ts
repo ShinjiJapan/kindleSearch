@@ -3,9 +3,6 @@ import ToolBarVM from "./components/toolbar/ToolBarVM";
 import { BookItemModel } from "./components/bookItem/BookItemModel";
 
 export default class AppVM extends BindableBase {
-  private delay = (msec: number) =>
-    new Promise(resolve => setTimeout(resolve, msec));
-
   public onGetMorePageClicked = async () => {
     await this.toolBarVM.getMorePageAsync();
     this.onPropertyChanged();

@@ -10,6 +10,7 @@ import { ExecFilterTextFieldVM } from "./ExecFilterTextFieldVM";
 import { LocalSorterVM } from "./LocalSorterVM";
 import TermVM from "./TermVM";
 import CategorySelectorVM from "./CategorySelectorVM";
+import { BasicTextFieldVM } from "./BasicTextFieldVM";
 
 export default class ToolBarVM extends BindableBase {
   /** amazon検索ワード */
@@ -35,7 +36,7 @@ export default class ToolBarVM extends BindableBase {
   /** 検索処理 */
   public onSearchAsync = async () => {
     this.books = [];
-    this.currentPage = 1;
+    this.currentPage = 0;
     this.pageCount = -1;
     this.isProgress = true;
 
@@ -48,7 +49,7 @@ export default class ToolBarVM extends BindableBase {
         appVM.onPropertyChanged();
         return;
       }
-      const books = await this.getPageAsync(this.currentPage++);
+      const books = await this.getPageAsync(++this.currentPage);
       this.addNewBooks(books);
       this.execFilter();
       if (i === this.bulkPageCount - 1) {
@@ -62,6 +63,7 @@ export default class ToolBarVM extends BindableBase {
       this.hasMorePage = true;
     }
 
+    this.onPropertyChanged();
     //footerの表示を更新するため必要
     appVM.onPropertyChanged(); // ●循環参照！パラメータで受け取るとか
   };
@@ -91,7 +93,10 @@ export default class ToolBarVM extends BindableBase {
       this.amazonSortDropdownVM.selectedKey || "",
       this.unlimitedOnlyCheckboxVM.checked,
       this.createQueryDateString,
-      this.categorySelectorVM.selectedKey
+      this.categorySelectorVM.selectedKey,
+      this.SearchAuthorVM.value,
+      this.MinPriceVM.value,
+      this.MaxPriceVM.value
     );
     const result = parse.exec(response);
 
@@ -209,4 +214,9 @@ export default class ToolBarVM extends BindableBase {
   public fromDateVM = new TermVM();
   public toDateVM = new TermVM();
   public categorySelectorVM = new CategorySelectorVM();
+
+  public SearchAuthorVM = new BasicTextFieldVM();
+  public MinPriceVM = new BasicTextFieldVM();
+  public MaxPriceVM = new BasicTextFieldVM();
+  // public FreeQueryVM = new BasicTextFieldVM();
 }

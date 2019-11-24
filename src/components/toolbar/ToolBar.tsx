@@ -11,6 +11,7 @@ import LocalSearchWord from "./LocalSearchWord";
 import LocalSorter from "./LocalSorter";
 import Term from "./Term";
 import CategorySelector from "./CategorySelector";
+import BasicTextField from "./BasicTextField";
 
 initializeIcons(/* optional base url */);
 
@@ -29,9 +30,20 @@ const ToolBar = (): React.ReactElement => {
           <Term fromTo="from" />
           <span>～</span>
           <Term fromTo="to" />
+
+          <AmazonConditionAdditional>
+            <AdditionalLabel>著者</AdditionalLabel>
+            <BasicTextField viewModel={viewModel.SearchAuthorVM} />
+            <AdditionalLabel>価格</AdditionalLabel>
+            <RightTextField viewModel={viewModel.MinPriceVM} />
+            <span>～</span>
+            <RightTextField viewModel={viewModel.MaxPriceVM} />
+          </AmazonConditionAdditional>
+
           <SearchButton text="検索" onClick={() => viewModel.onSearchAsync()} />
         </AmazonCondition>
       </Wrapper>
+
       <Wrapper>
         <LocalCondition>
           <Label>ローカル条件</Label>
@@ -46,9 +58,28 @@ const ToolBar = (): React.ReactElement => {
   );
 };
 
+export default React.memo(ToolBar);
+
+const RightTextField = styled(BasicTextField)`
+  & > div > div > input {
+    text-align: right;
+  }
+`;
+
+const AdditionalLabel = styled.span`
+  margin-left: 10px;
+  margin-right: 4px;
+`;
+
+const AmazonConditionAdditional = styled.div`
+  display: grid;
+  grid-template-columns: auto 150px auto 80px auto 80px;
+  align-items: center;
+  height: 100%;
+`;
 const AmazonCondition = styled.div`
   display: grid;
-  grid-template-columns: 200px 200px 180px 150px 120px auto 120px 100px;
+  grid-template-columns: 200px 200px 180px 150px 120px auto 120px auto 100px;
   align-items: center;
   height: 100%;
 `;
@@ -59,9 +90,6 @@ const LocalCondition = styled.div`
   align-items: center;
   height: 100%;
 `;
-
-export default React.memo(ToolBar);
-
 const SearchButton = styled(PrimaryButton)`
   margin-left: 10px;
   margin-right: 10px;

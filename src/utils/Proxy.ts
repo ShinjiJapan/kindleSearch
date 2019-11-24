@@ -53,6 +53,30 @@ class Proxy {
     });
   };
 
+  private getAutherQueryString = (val: string): string => {
+    return val ? ",p_27:" + val : "";
+  };
+
+  private getUnlimitedQueryString = (isUnlimitedOnly: boolean): string => {
+    return isUnlimitedOnly ? ",p_n_feature_nineteen_browse-bin:3169286051" : "";
+  };
+
+  private getAmazonPriceString = (val: string): string => {
+    if (!val) return "";
+    return (Number(val) * 100).toString();
+  };
+
+  private getPriceQueryString = (
+    minString: string,
+    maxString: string
+  ): string => {
+    const min = this.getAmazonPriceString(minString);
+    const max = this.getAmazonPriceString(maxString);
+
+    if (!min && !max) return "";
+    return `,p_36:${min}-${max}`;
+  };
+
   /** 検索ワードを元にamazonから情報を取得 */
   public fetchPageAsync = async (
     page: number,
@@ -60,18 +84,22 @@ class Proxy {
     sortKey: string,
     isUnlimitedOnly: boolean,
     queryDateString: string,
-    categoryID: string
+    categoryID: string,
+    author: string,
+    minPrice: string,
+    maxPrice: string
   ): Promise<string> => {
     const params: {
       [key: string]: string;
     } = {};
     params["k"] = searchWord;
-    params["rh"] = isUnlimitedOnly
-      ? "n:" +
-        categoryID +
-        ",p_n_feature_nineteen_browse-bin:3169286051" +
-        queryDateString
-      : "n:" + categoryID + queryDateString;
+    params["rh"] =
+      "n:" +
+      categoryID +
+      this.getUnlimitedQueryString(isUnlimitedOnly) +
+      queryDateString +
+      this.getAutherQueryString(author) +
+      this.getPriceQueryString(minPrice, maxPrice);
 
     params["i"] = "digital-text";
 
