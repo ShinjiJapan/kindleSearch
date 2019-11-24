@@ -26,13 +26,6 @@ export class AmazonSortDropdownVM extends BindableBase {
     },
   ];
 
-  // public get selectedKey(): string {
-  //   return localStorage.getItem("AmazonSort")!;
-  // }
-  // public set selectedKey(value: string) {
-  //   localStorage.setItem("AmazonSort", value || "");
-  // }
-
   public selectedKey: string = "";
   public onChange = (
     evt?: React.FormEvent<HTMLElement | HTMLInputElement>,
