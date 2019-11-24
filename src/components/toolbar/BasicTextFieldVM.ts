@@ -1,8 +1,7 @@
 import { BindableBase } from "../../BindableBase";
-import { ChangeEvent } from "react";
 
 export class BasicTextFieldVM extends BindableBase {
-  public constructor() {
+  public constructor(private execSearch: () => void) {
     super();
   }
   public value = "";
@@ -13,5 +12,9 @@ export class BasicTextFieldVM extends BindableBase {
   ) => {
     this.value = newValue || "";
     this.onPropertyChanged();
+  };
+  public onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.charCode !== 13) return;
+    this.execSearch();
   };
 }

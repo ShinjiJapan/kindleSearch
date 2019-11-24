@@ -11,13 +11,9 @@ import { LocalSorterVM } from "./LocalSorterVM";
 import TermVM from "./TermVM";
 import CategorySelectorVM from "./CategorySelectorVM";
 import { BasicTextFieldVM } from "./BasicTextFieldVM";
+import DetailAreaVM from "./DetailAreaVM";
 
 export default class ToolBarVM extends BindableBase {
-  /** amazon検索ワード */
-  public amazonSearchWordVM = new AmazonSearchWordVM(() =>
-    this.onSearchAsync()
-  );
-
   /** amazon検索ソート順 */
   public amazonSortDropdownVM = new AmazonSortDropdownVM();
 
@@ -211,12 +207,16 @@ export default class ToolBarVM extends BindableBase {
     );
   };
 
+  /** amazon検索ワード */
+  public amazonSearchWordVM = new AmazonSearchWordVM(this.onSearchAsync);
   public fromDateVM = new TermVM();
   public toDateVM = new TermVM();
   public categorySelectorVM = new CategorySelectorVM();
 
-  public SearchAuthorVM = new BasicTextFieldVM();
-  public MinPriceVM = new BasicTextFieldVM();
-  public MaxPriceVM = new BasicTextFieldVM();
-  // public FreeQueryVM = new BasicTextFieldVM();
+  public SearchAuthorVM = new BasicTextFieldVM(this.onSearchAsync);
+  public MinPriceVM = new BasicTextFieldVM(this.onSearchAsync);
+  public MaxPriceVM = new BasicTextFieldVM(this.onSearchAsync);
+
+  public detailAreaVM = new DetailAreaVM();
+  // public FreeQueryVM = new BasicTextFieldVM(this.onSearchAsync);
 }
