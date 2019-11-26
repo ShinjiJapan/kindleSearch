@@ -99,9 +99,9 @@ class Parse {
         "a-section a-spacing-none a-spacing-top-mini"
       )[0].children[0].children[0].innerHTML;
 
-      const matches = innerHTML.match(/[0-9\,￥]+/g);
+      const matches = innerHTML.match(/￥+[0-9\,]+/);
       const match = matches && matches[0] ? matches[0] : "";
-      return match && match !== "1" ? "(" + match + ")" : "";
+      return match ? "(" + match + ")" : "";
     } catch {
       return "";
     }
@@ -111,7 +111,7 @@ class Parse {
   private getStar = (bookElement: Element): number => {
     try {
       const starRoot = bookElement.getElementsByClassName("a-icon-alt")[0];
-      return +starRoot.innerHTML.replace("5つ星のうち", "");
+      return +starRoot.innerHTML.match(/[0-9.]+/g)![1];
     } catch {
       return 0;
     }
