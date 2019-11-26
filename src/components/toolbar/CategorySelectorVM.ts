@@ -1,20 +1,23 @@
 import { BindableBase } from "../../BindableBase";
-import { IComboBoxOption } from "office-ui-fabric-react/lib/components/ComboBox/ComboBox.types";
-import { DropdownMenuItemType } from "office-ui-fabric-react/lib/components/Dropdown/Dropdown.types";
+import {
+  DropdownMenuItemType,
+  IDropdownOption,
+  IDropdownStyles,
+} from "office-ui-fabric-react/lib/components/Dropdown/Dropdown.types";
 
-const categories: IComboBoxOption[] = [
+const categories: IDropdownOption[] = [
   {
     key: "2250738051",
     text: "指定なし",
   },
   {
     key: "2275256051header",
-    text: "◆Kindle本(和書)",
+    text: "Kindle和書",
     itemType: DropdownMenuItemType.Header,
   },
   {
     key: "2275256051",
-    text: "Kindle本(和書)(ALL)",
+    text: "Kindle和書(ALL)",
   },
   { key: "2292699051", text: "文学・評論" },
   { key: "2292095051", text: "人文・思想" },
@@ -45,7 +48,7 @@ const categories: IComboBoxOption[] = [
   { key: "2291476051", text: "アダルト" },
   {
     key: "2293143051header",
-    text: "◆コミック",
+    text: "コミック",
     itemType: DropdownMenuItemType.Header,
   },
   {
@@ -73,7 +76,7 @@ const categories: IComboBoxOption[] = [
 
   {
     key: "2275259051header",
-    text: "◆Kindle洋書",
+    text: "Kindle洋書",
     itemType: DropdownMenuItemType.Header,
   },
   {
@@ -118,9 +121,13 @@ export default class extends BindableBase {
   public readonly options = categories;
   public selectedKey = "";
 
+  public readonly styles: Partial<IDropdownStyles> = {
+    dropdownItemHeader: { backgroundColor: "#cdf", color: "#333" },
+  };
+
   public readonly onChange = (
     _: any,
-    option?: IComboBoxOption,
+    option?: IDropdownOption,
     __?: number,
     value?: string
   ) => {
