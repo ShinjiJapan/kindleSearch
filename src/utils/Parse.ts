@@ -22,12 +22,6 @@ class Parse {
       const children = this.getBookElements(div);
       Array.prototype.forEach.call(children, child => {
         const book = this.conv(child);
-        // if (
-        //   book &&
-        //   !books.some(x => x.title === book.title && x.authors === book.authors)
-        // ) {
-        //   books.push(book);
-        // }
         if (book) {
           books.push(book);
         }

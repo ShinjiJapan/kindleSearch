@@ -6,17 +6,18 @@ import * as serviceWorker from "./serviceWorker";
 
 declare const chrome: any;
 
-try {
-  if (chrome) {
-    chrome.tabs.getSelected(null, (tab: any) => {
-      if (!tab.url || tab.url === document.location.href) {
-        ReactDOM.render(<App />, document.getElementById("root"));
-      } else {
-        chrome.tabs.create({ url: document.location.href });
-      }
-    });
-  }
-} catch {
+if (chrome && chrome.tabs) {
+  chrome.tabs.getSelected(null, (tab: any) => {
+    if (tab.url) {
+      // ポップアップで開いた場合
+      chrome.tabs.create({ url: document.location.href });
+    } else {
+      // ポップアップから全画面で開いた後
+      ReactDOM.render(<App />, document.getElementById("root"));
+    }
+  });
+} else {
+  // ローカル実行の場合
   ReactDOM.render(<App />, document.getElementById("root"));
 }
 serviceWorker.unregister();
