@@ -109,7 +109,7 @@ export default class ToolBarVM extends BindableBase {
   private getCacheAsync = async () => {
     this.cacheBooks = [];
     for (let i = 0; i < this.bulkPageCount; i++) {
-      if (this.pageCount === this.currentPage) {
+      if (this.currentPage > this.pageCount) {
         return;
       }
       const books = await this.getPageAsync(this.currentPage++);
