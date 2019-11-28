@@ -8,7 +8,7 @@ class ChromeUtil {
     });
   };
 
-  public sendTabMessage = (param: object) => {
+  public sendTabMessage = (param: object): void => {
     chrome.tabs.getSelected(null, (tab: any) => {
       chrome.tabs.sendMessage(tab.id, param);
     });

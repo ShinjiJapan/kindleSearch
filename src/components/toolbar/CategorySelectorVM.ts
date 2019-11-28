@@ -125,12 +125,7 @@ export default class extends BindableBase {
     dropdownItemHeader: { backgroundColor: "#cdf", color: "#333" },
   };
 
-  public readonly onChange = (
-    _: any,
-    option?: IDropdownOption,
-    __?: number,
-    value?: string
-  ): void => {
+  public readonly onChange = (_: any, option?: IDropdownOption): void => {
     this.selectedKey = option!.key.toString();
     localStorage.setItem("AmazonCategory", this.selectedKey);
     this.onPropertyChanged();

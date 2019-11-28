@@ -25,7 +25,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "buildl": "yarn build && yarn license",
+    "license": "yarn licenses generate-disclaimer --ignore-platform --ignore-optional --ignore-engines > build\\licenses.txt",
+    "rename": "yarn rename-mainjs && yarn rename-libjs && yarn rename-runtimejs && yarn rename-css",
     "test": "react-scripts test",
+    "lint": "eslint -c ./.eslintrc.json src/**/*.{ts,tsx}",
+    "lintfix": "eslint --fix -c ./.eslintrc.json src/**/*.{ts,tsx}",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -116,7 +116,7 @@ class Parse {
    * aタグのinnerHTMLにエスケープせず突っ込むとaタグが表示されないケースがあるので
    */
   private escapeHTML = (val: string): string => {
-    var elem = document.createElement("div");
+    const elem = document.createElement("div");
     elem.appendChild(document.createTextNode(val));
     return elem.innerHTML;
   };
