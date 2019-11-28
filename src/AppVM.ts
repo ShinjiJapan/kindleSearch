@@ -1,20 +1,13 @@
 import { BindableBase } from "./BindableBase";
 import ToolBarVM from "./components/toolbar/ToolBarVM";
 import { BookItemModel } from "./components/bookItem/BookItemModel";
+import FooterVM from "./components/footer/FooterVM";
 
 export default class AppVM extends BindableBase {
   public onGetMorePageClicked = async (): Promise<void> => {
     await this.toolBarVM.readMorePageAsync();
     this.onPropertyChanged();
   };
-
-  public get pagenation(): string {
-    return (
-      this.toolBarVM.virtualCurrentPage +
-      " / " +
-      this.toolBarVM.virtualPageCount
-    );
-  }
 
   public get pageCount(): number {
     return this.toolBarVM.pageCount;
@@ -37,5 +30,6 @@ export default class AppVM extends BindableBase {
   }
 
   public toolBarVM: ToolBarVM = new ToolBarVM();
+  public footerVM: FooterVM = new FooterVM();
 }
 export const appVM: AppVM = new AppVM();

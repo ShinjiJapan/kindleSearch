@@ -21,11 +21,15 @@ export default class ToolBarVM extends BindableBase {
   public unlimitedOnlyCheckboxVM = new UnlimitedOnlyCheckboxVM();
 
   public bulkPageCount = 3;
-  public virtualCurrentPage = 1;
+  public logicalCurrentPage = 1;
   public currentPage = 0;
   public pageCount = 0;
   public hasMorePage = false;
   private books: BookItemModel[] = [];
+
+  public get logicalPageCount(): number {
+    return Math.ceil(this.pageCount / this.bulkPageCount);
+  }
 
   public isProgress = false;
 
@@ -36,8 +40,9 @@ export default class ToolBarVM extends BindableBase {
     this.pageCount = -1;
     this.isProgress = true;
 
-    this.virtualCurrentPage = 1;
+    this.logicalCurrentPage = 1;
     this.hasMorePage = false;
+    appVM.footerVM.onPropertyChanged();
     appVM.onPropertyChanged();
 
     this.params = {
@@ -54,6 +59,9 @@ export default class ToolBarVM extends BindableBase {
         return;
       }
       const result = await this.getPageAsync(++this.currentPage);
+      if (i === 0) {
+        this.pageCount = result.pageCount;
+      }
       this.addNewBooks(result.books);
       this.execFilter();
       if (i === this.bulkPageCount - 1) {
@@ -68,8 +76,7 @@ export default class ToolBarVM extends BindableBase {
     }
 
     this.onPropertyChanged();
-    //footerの表示を更新するため必要
-    appVM.onPropertyChanged(); // ●循環参照！パラメータで受け取るとか
+    appVM.footerVM.onPropertyChanged();
   };
 
   private get createQueryDateString(): string {
@@ -90,7 +97,6 @@ export default class ToolBarVM extends BindableBase {
 
   private params: UrlParams;
 
-  public virtualPageCount = -1;
   /** 1ページ取得 */
   private getPageAsync = async (
     page: number
@@ -172,14 +178,15 @@ export default class ToolBarVM extends BindableBase {
   private getCacheTask: Promise<void>;
   /** 追加ページ取得 */
   public readMorePageAsync = async (): Promise<void> => {
-    this.virtualCurrentPage++;
+    this.logicalCurrentPage++;
     this.hasMorePage = false;
     await this.getCacheTask;
     this.addNewBooks(this.cacheBooks);
 
     this.getCacheTask = this.readCacheAsync();
 
-    this.hasMorePage = this.virtualCurrentPage < this.virtualPageCount;
+    this.hasMorePage = this.logicalCurrentPage < this.logicalPageCount;
+    appVM.footerVM.onPropertyChanged();
   };
 
   public filteredBooks: BookItemModel[] = [];

@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { appVM } from "../../AppVM";
-export default (): React.ReactElement => {
-  return appVM.hasMorePage ? (
-    <Root onClick={appVM.onGetMorePageClicked}>
-      {"結果をもっと表示 " + appVM.pagenation}
-    </Root>
+
+const Footer = (): React.ReactElement => {
+  const viewModel = appVM.footerVM;
+  viewModel.useBind();
+  return viewModel.hasMorePage ? (
+    <Root onClick={appVM.onGetMorePageClicked}>{viewModel.label}</Root>
   ) : (
     <React.Fragment />
   );
 };
+
+export default React.memo(Footer);
 
 const Root = styled.div`
   width: 100%;
