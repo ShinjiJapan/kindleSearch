@@ -12,7 +12,7 @@ export class UnlimitedOnlyCheckboxVM extends BindableBase {
   public onChange = (
     ev?: React.FormEvent<HTMLElement | HTMLInputElement>,
     checked?: boolean
-  ) => {
+  ): void => {
     this.checked = checked === true;
     localStorage.setItem("isUnlimitedOnly", this.checked.toString());
     this.onPropertyChanged();

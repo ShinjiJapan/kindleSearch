@@ -7,7 +7,7 @@ export default class extends BindableBase {
   }
 
   public isOpen = false;
-  public onClick = () => {
+  public onClick = (): void => {
     this.isOpen = !this.isOpen;
     localStorage.setItem("IsOpenDetailArea", this.isOpen.toString());
     this.onPropertyChanged();

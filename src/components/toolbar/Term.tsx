@@ -2,7 +2,7 @@ import * as React from "react";
 import { DatePicker } from "office-ui-fabric-react";
 import { appVM } from "../../AppVM";
 
-const Term = (props: { fromTo: "from" | "to" }) => {
+const Term = (props: { fromTo: "from" | "to" }): React.ReactElement => {
   const viewModel =
     props.fromTo === "from"
       ? appVM.toolBarVM.fromDateVM

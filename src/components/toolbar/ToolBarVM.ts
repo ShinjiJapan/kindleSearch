@@ -1,6 +1,6 @@
 import { BindableBase } from "../../BindableBase";
 import { appVM } from "../../AppVM";
-import proxy from "../../utils/Proxy";
+import proxy, { UrlParams } from "../../utils/Proxy";
 import { BookItemModel } from "../bookItem/BookItemModel";
 import parse from "../../utils/Parse";
 import { AmazonSortDropdownVM } from "./AmazonSortDropdownVM";
@@ -29,8 +29,8 @@ export default class ToolBarVM extends BindableBase {
 
   public isProgress = false;
 
-  /** 検索処理 */
-  public onSearchAsync = async () => {
+  /** 検索ボタンまたはenterが押された時の処理 */
+  public onSearchAsync = async (): Promise<void> => {
     this.books = [];
     this.currentPage = 0;
     this.pageCount = -1;
@@ -39,14 +39,22 @@ export default class ToolBarVM extends BindableBase {
     this.virtualCurrentPage = 1;
     this.hasMorePage = false;
     appVM.onPropertyChanged();
+
+    this.params = {
+      k: this.amazonSearchWordVM.value,
+      rh: this.getRhQueryString(true),
+      bbn: this.categorySelectorVM.selectedKey,
+      s: this.amazonSortDropdownVM.selectedKey,
+    };
+
     for (let i = 0; i < this.bulkPageCount; i++) {
       if (this.currentPage === this.pageCount) {
         this.isProgress = false;
         appVM.onPropertyChanged();
         return;
       }
-      const books = await this.getPageAsync(++this.currentPage);
-      this.addNewBooks(books);
+      const result = await this.getPageAsync(++this.currentPage);
+      this.addNewBooks(result.books);
       this.execFilter();
       if (i === this.bulkPageCount - 1) {
         this.isProgress = false;
@@ -55,7 +63,7 @@ export default class ToolBarVM extends BindableBase {
     }
 
     if (this.pageCount > this.bulkPageCount) {
-      this.getCacheTask = this.getCacheAsync();
+      this.getCacheTask = this.readCacheAsync();
       this.hasMorePage = true;
     }
 
@@ -80,59 +88,103 @@ export default class ToolBarVM extends BindableBase {
     );
   };
 
+  private params: UrlParams;
+
   public virtualPageCount = -1;
   /** 1ページ取得 */
-  private getPageAsync = async (page: number): Promise<BookItemModel[]> => {
-    const response = await proxy.fetchPageAsync(
-      page,
-      this.amazonSearchWordVM.value,
-      this.amazonSortDropdownVM.selectedKey || "",
-      this.unlimitedOnlyCheckboxVM.checked,
-      this.createQueryDateString,
-      this.categorySelectorVM.selectedKey,
-      this.SearchAuthorVM.value,
-      this.MinPriceVM.value,
-      this.MaxPriceVM.value
-    );
+  private getPageAsync = async (
+    page: number
+  ): Promise<{
+    books: BookItemModel[];
+    pageCount: number;
+  }> => {
+    const response = await proxy.fetchPageAsync(this.params, page.toString());
     const result = parse.exec(response);
+    console.log("pageCount : " + result.pageCount);
 
-    if (this.pageCount < 0) {
-      this.pageCount = result.pageCount;
-      this.virtualPageCount = Math.ceil(this.pageCount / this.bulkPageCount);
-    }
-    return result.books;
+    return result;
   };
+
+  // #region rhパラメータ作成
+
+  private getRhQueryString = (is16: boolean): string => {
+    const common = [
+      this.autherQueryString,
+      this.unlimitedQueryString,
+      this.termQueryString,
+      this.priceQueryString,
+    ];
+
+    if (is16) common.push(this.categoryQueryString);
+
+    return common.filter(x => x !== "").join(",");
+  };
+
+  private get categoryQueryString(): string {
+    return "n:" + this.categorySelectorVM.selectedKey;
+  }
+
+  private get autherQueryString(): string {
+    return this.SearchAuthorVM.value ? "p_27:" + this.SearchAuthorVM.value : "";
+  }
+
+  private get unlimitedQueryString(): string {
+    return this.unlimitedOnlyCheckboxVM.checked
+      ? "p_n_feature_nineteen_browse-bin:3169286051"
+      : "";
+  }
+
+  private get termQueryString(): string {
+    const from = this.fromDateVM.value;
+    const to = this.toDateVM.value;
+    if (!from && !to) return "";
+    return `p_n_date:${this.toYYYYMMDD(from)}-${this.toYYYYMMDD(to)}`;
+  }
+
+  private getAmazonPriceString = (val: string): string => {
+    if (!val) return "";
+    return (Number(val) * 100).toString();
+  };
+
+  private get priceQueryString(): string {
+    const min = this.getAmazonPriceString(this.MinPriceVM.value);
+    const max = this.getAmazonPriceString(this.MaxPriceVM.value);
+
+    if (!min && !max) return "";
+    return `p_36:${min}-${max}`;
+  }
+  // #endregion rhパラメータ作成
 
   // 先読み分
   private cacheBooks: BookItemModel[] = [];
   /** 先読み */
-  private getCacheAsync = async () => {
+  private readCacheAsync = async (): Promise<void> => {
     this.cacheBooks = [];
     for (let i = 0; i < this.bulkPageCount; i++) {
       if (this.currentPage > this.pageCount) {
         return;
       }
-      const books = await this.getPageAsync(this.currentPage++);
-      this.cacheBooks = this.cacheBooks.concat(books);
+      const result = await this.getPageAsync(this.currentPage++);
+      this.cacheBooks = this.cacheBooks.concat(result.books);
     }
   };
 
   private getCacheTask: Promise<void>;
   /** 追加ページ取得 */
-  public getMorePageAsync = async (): Promise<void> => {
+  public readMorePageAsync = async (): Promise<void> => {
     this.virtualCurrentPage++;
     this.hasMorePage = false;
     await this.getCacheTask;
     this.addNewBooks(this.cacheBooks);
 
-    this.getCacheTask = this.getCacheAsync();
+    this.getCacheTask = this.readCacheAsync();
 
     this.hasMorePage = this.virtualCurrentPage < this.virtualPageCount;
   };
 
   public filteredBooks: BookItemModel[] = [];
   /** booksを一覧に追加 */
-  private addNewBooks = (books: BookItemModel[]) => {
+  private addNewBooks = (books: BookItemModel[]): void => {
     books.forEach(book => {
       if (
         (book.isUnlimited || !this.unlimitedOnlyCheckboxVM.checked) && // unlimitedの検索結果に非対象商品が混ざるようになったため
@@ -166,7 +218,7 @@ export default class ToolBarVM extends BindableBase {
   });
 
   /** 「ローカル条件」を反映 */
-  private execFilter = () => {
+  private execFilter = (): void => {
     this.filteredBooks = this.books
       .filter(
         book =>

@@ -9,11 +9,11 @@ export class BasicTextFieldVM extends BindableBase {
   public onChange = (
     event?: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
     newValue?: string
-  ) => {
+  ): void => {
     this.value = newValue || "";
     this.onPropertyChanged();
   };
-  public onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  public onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.charCode !== 13) return;
     this.execSearch();
   };

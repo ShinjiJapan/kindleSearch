@@ -8,9 +8,9 @@ export class ExecFilterTextFieldVM extends BindableBase {
 
   public value: string;
   public onChange = (
-    event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+    _: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
     newValue?: string
-  ) => {
+  ): void => {
     this.value = newValue || "";
     this.splitedWords = this.value
       .split(" ")

@@ -28,7 +28,7 @@ export class LocalSorterVM extends BindableBase {
     },
   ];
 
-  public selectedKey: string = "";
+  public selectedKey = "";
   public onChange = (
     evt?: React.FormEvent<HTMLElement | HTMLInputElement>,
     option?: IDropdownOption

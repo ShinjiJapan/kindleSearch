@@ -18,7 +18,7 @@ export class BindableBase {
     this.effect.onPropertyChanged();
   }
 
-  public useBind = () => {
+  public useBind = (): void => {
     this.effect = useOnPropertyChanged();
   };
 }

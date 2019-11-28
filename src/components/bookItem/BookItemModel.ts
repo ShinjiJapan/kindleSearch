@@ -2,7 +2,6 @@ export type BookItemModel = {
   title: string;
   src: string;
   url: string;
-  // author: string;
   star: number;
   authors: Author[];
   price: string;

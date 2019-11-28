@@ -3,8 +3,8 @@ import ToolBarVM from "./components/toolbar/ToolBarVM";
 import { BookItemModel } from "./components/bookItem/BookItemModel";
 
 export default class AppVM extends BindableBase {
-  public onGetMorePageClicked = async () => {
-    await this.toolBarVM.getMorePageAsync();
+  public onGetMorePageClicked = async (): Promise<void> => {
+    await this.toolBarVM.readMorePageAsync();
     this.onPropertyChanged();
   };
 

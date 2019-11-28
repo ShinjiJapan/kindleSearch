@@ -51,12 +51,12 @@ export const DayPickerStrings: IDatePickerStrings = {
 export default class TermVM extends BindableBase {
   public value: Date | undefined;
   public strings = DayPickerStrings;
-  public formatDate = (date?: Date) => {
+  public formatDate = (date?: Date): string => {
     return date ? date.toLocaleDateString() : "";
   };
   public readonly allowTextInput = true;
 
-  public onSelectDate = (date: Date | null | undefined) => {
+  public onSelectDate = (date: Date | null | undefined): void => {
     this.value = date || undefined;
     this.onPropertyChanged();
   };

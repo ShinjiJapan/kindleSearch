@@ -130,7 +130,7 @@ export default class extends BindableBase {
     option?: IDropdownOption,
     __?: number,
     value?: string
-  ) => {
+  ): void => {
     this.selectedKey = option!.key.toString();
     localStorage.setItem("AmazonCategory", this.selectedKey);
     this.onPropertyChanged();

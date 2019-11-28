@@ -4,7 +4,7 @@ import styled from "styled-components";
 import BasicTextField from "./BasicTextField";
 import { appVM } from "../../AppVM";
 
-export default () => {
+export default (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.detailAreaVM;
   viewModel.useBind();
   return (

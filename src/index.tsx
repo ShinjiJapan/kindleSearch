@@ -12,7 +12,7 @@ if (chrome && chrome.tabs) {
       // ポップアップで開いた場合
       chrome.tabs.create({ url: document.location.href });
     } else {
-      // ポップアップから全画面で開いた後
+      // ポップアップから別タブで開いた後
       ReactDOM.render(<App />, document.getElementById("root"));
     }
   });
