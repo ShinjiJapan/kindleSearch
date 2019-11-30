@@ -38,20 +38,16 @@ class Parse {
     );
   };
 
-  /**
-   * 検索結果の総ページ数を取得
-   */
+  /** 検索結果の総ページ数を取得 */
   private getPageCount = (elm: Element): number => {
     const pagenation = elm.getElementsByClassName("a-pagination")[0];
     if (!pagenation) return 1;
 
-    if (pagenation.children.length < 6) {
-      const lastIndex = elm.getElementsByClassName("a-normal").length - 1;
-      return +elm.getElementsByClassName("a-normal")[lastIndex].children[0]
-        .innerHTML;
-    }
-
-    return +pagenation.children[5].innerHTML;
+    return Math.max(
+      ...(Array.prototype.map
+        .call(pagenation.children, child => +child.innerText)
+        .filter(x => x) as any)
+    );
   };
 
   /** responseのrootNodeからbooksを取得 */
