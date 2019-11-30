@@ -6,31 +6,32 @@ class Parse {
     val: string
   ): { books: BookItemModel[]; pageCount: number } => {
     try {
+      // 指定されたカテゴリーで1件も見つからなかった場合、勝手に「すべての結果を表示します」とかやられるのでなかったことにする
+      if (this.hasNoResult(val)) return { books: [], pageCount: 0 };
+
       const div = document.createElement("html");
 
       div.innerHTML = val;
 
-      // 1件も見つからなかった場合、勝手に「全カテゴリの検索結果を表示します」とかやられるので除外する
-      const notFound = div.getElementsByClassName(
-        "a-size-base a-spacing-base a-color-base a-text-normal"
-      );
-
-      if (notFound.length > 0) return { books: [], pageCount: 0 };
-
-      const books: BookItemModel[] = [];
+      if (this.hasNoResult(val)) return { books: [], pageCount: 0 };
 
       const children = this.getBookElements(div);
-      Array.prototype.forEach.call(children, child => {
-        const book = this.conv(child);
-        if (book) {
-          books.push(book);
-        }
-      });
+
+      const books = Array.prototype.map
+        .call(children, this.conv)
+        .filter(x => x) as BookItemModel[];
 
       return { books: books, pageCount: this.getPageCount(div) };
     } catch (ex) {
       throw ex;
     }
+  };
+
+  private hasNoResult = (val: string): boolean => {
+    return (
+      val.includes("の結果は見つかりませんでした") &&
+      val.includes("のすべての結果を表示します")
+    );
   };
 
   /**

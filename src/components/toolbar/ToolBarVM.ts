@@ -53,11 +53,6 @@ export default class ToolBarVM extends BindableBase {
     };
 
     for (let i = 0; i < this.bulkPageCount; i++) {
-      if (this.currentPage === this.pageCount) {
-        this.isProgress = false;
-        appVM.onPropertyChanged();
-        return;
-      }
       const result = await this.getPageAsync(++this.currentPage);
       if (i === 0) {
         this.pageCount = result.pageCount;
@@ -68,31 +63,20 @@ export default class ToolBarVM extends BindableBase {
         this.isProgress = false;
       }
       appVM.onPropertyChanged();
+
+      if (this.currentPage > this.pageCount) {
+        this.isProgress = false;
+        appVM.onPropertyChanged();
+        return;
+      }
     }
 
+    // 先があるなら先のページをキャッシュ
     if (this.pageCount > this.bulkPageCount) {
       this.getCacheTask = this.readCacheAsync();
       this.hasMorePage = true;
+      appVM.footerVM.onPropertyChanged();
     }
-
-    this.onPropertyChanged();
-    appVM.footerVM.onPropertyChanged();
-  };
-
-  private get createQueryDateString(): string {
-    const from = this.fromDateVM.value;
-    const to = this.toDateVM.value;
-    if (!from && !to) return "";
-    return `,p_n_date:${this.toYYYYMMDD(from)}-${this.toYYYYMMDD(to)}`;
-  }
-
-  private toYYYYMMDD = (date?: Date): string => {
-    if (!date) return "";
-    return (
-      date.getFullYear().toString() +
-      ("0" + (date.getMonth() + 1)).slice(-2) +
-      ("0" + date.getDate()).slice(-2)
-    );
   };
 
   private params: UrlParams;
@@ -147,6 +131,14 @@ export default class ToolBarVM extends BindableBase {
     return `p_n_date:${this.toYYYYMMDD(from)}-${this.toYYYYMMDD(to)}`;
   }
 
+  private toYYYYMMDD = (date?: Date): string => {
+    if (!date) return "";
+    return (
+      date.getFullYear().toString() +
+      ("0" + (date.getMonth() + 1)).slice(-2) +
+      ("0" + date.getDate()).slice(-2)
+    );
+  };
   private getAmazonPriceString = (val: string): string => {
     if (!val) return "";
     return (Number(val) * 100).toString();
