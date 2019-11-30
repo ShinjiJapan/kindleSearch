@@ -1,6 +1,6 @@
 import { BindableBase } from "../../BindableBase";
 import { appVM } from "../../AppVM";
-import proxy, { UrlParams } from "../../utils/Proxy";
+import connection, { UrlParams } from "../../utils/Connection";
 import { BookItemModel } from "../bookItem/BookItemModel";
 import parse from "../../utils/Parse";
 import { AmazonSortDropdownVM } from "./AmazonSortDropdownVM";
@@ -88,7 +88,10 @@ export default class ToolBarVM extends BindableBase {
     books: BookItemModel[];
     pageCount: number;
   }> => {
-    const response = await proxy.fetchPageAsync(this.params, page.toString());
+    const response = await connection.fetchPageAsync(
+      this.params,
+      page.toString()
+    );
     const result = parse.exec(response);
     console.log("pageCount : " + result.pageCount);
 

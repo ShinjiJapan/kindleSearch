@@ -18,7 +18,7 @@ class Parse {
       const children = this.getBookElements(div);
 
       const books = Array.prototype.map
-        .call(children, this.conv)
+        .call(children, this.createBookFromElement)
         .filter(x => x) as BookItemModel[];
 
       return { books: books, pageCount: this.getPageCount(div) };
@@ -56,7 +56,9 @@ class Parse {
   }
 
   /** 1件ごとのnodeからBookItemVMを返す */
-  private conv = (bookElement: Element): BookItemModel | undefined => {
+  private createBookFromElement = (
+    bookElement: Element
+  ): BookItemModel | undefined => {
     try {
       return {
         title: this.getTitle(bookElement),

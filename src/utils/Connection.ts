@@ -2,7 +2,7 @@ import { chromeUtil } from "./Chrome";
 
 const baseUrl = "/s";
 
-class Proxy {
+class Connection {
   /** Urlパラメータ文字列を作成 */
   private createUrlParamString = (params?: {
     [key: string]: string;
@@ -69,5 +69,5 @@ export type UrlParams = {
   s: string;
 };
 
-const proxy = new Proxy();
-export default proxy;
+const connection = new Connection();
+export default connection;
