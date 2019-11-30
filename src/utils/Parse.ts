@@ -6,14 +6,11 @@ class Parse {
     val: string
   ): { books: BookItemModel[]; pageCount: number } => {
     try {
-      // 指定されたカテゴリーで1件も見つからなかった場合、勝手に「すべての結果を表示します」とかやられるのでなかったことにする
-      if (this.hasNoResult(val)) return { books: [], pageCount: 0 };
-
       const div = document.createElement("html");
-
       div.innerHTML = val;
 
-      if (this.hasNoResult(val)) return { books: [], pageCount: 0 };
+      // 指定されたカテゴリーで1件も見つからなかった場合、勝手に「すべての結果を表示します」とかやられるのでなかったことにする
+      if (this.hasNoResult(div)) return { books: [], pageCount: 0 };
 
       const children = this.getBookElements(div);
 
@@ -27,10 +24,17 @@ class Parse {
     }
   };
 
-  private hasNoResult = (val: string): boolean => {
+  private hasNoResult = (div: HTMLHtmlElement): boolean => {
+    if (
+      div.getElementsByClassName(
+        "a-size-base a-spacing-base a-color-base a-text-normal"
+      ).length > 0
+    )
+      return true;
+
     return (
-      val.includes("の結果は見つかりませんでした") &&
-      val.includes("のすべての結果を表示します")
+      div.innerHTML.includes("の結果は見つかりませんでした") &&
+      div.innerHTML.includes("のすべての結果を表示します")
     );
   };
 
