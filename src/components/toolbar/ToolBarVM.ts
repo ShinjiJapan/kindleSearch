@@ -157,26 +157,27 @@ export default class ToolBarVM extends BindableBase {
   // #endregion rhパラメータ作成
 
   // 先読み分
-  private cacheBooks: BookItemModel[] = [];
+
   /** 先読み */
-  private readCacheAsync = async (): Promise<void> => {
-    this.cacheBooks = [];
+  private readCacheAsync = async (): Promise<BookItemModel[]> => {
+    let books: BookItemModel[] = [];
     for (let i = 0; i < this.bulkPageCount; i++) {
       if (this.currentPage > this.pageCount) {
-        return;
+        break;
       }
       const result = await this.getPageAsync(this.currentPage++);
-      this.cacheBooks = this.cacheBooks.concat(result.books);
+      books = books.concat(result.books);
     }
+
+    return books;
   };
 
-  private getCacheTask: Promise<void>;
+  private getCacheTask: Promise<BookItemModel[]>;
   /** 追加ページ取得 */
   public readMorePageAsync = async (): Promise<void> => {
     this.logicalCurrentPage++;
     this.hasMorePage = false;
-    await this.getCacheTask;
-    this.addNewBooks(this.cacheBooks);
+    this.addNewBooks(await this.getCacheTask);
 
     this.getCacheTask = this.readCacheAsync();
 
