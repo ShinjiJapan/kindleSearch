@@ -52,7 +52,7 @@ class Parse {
 
   /** responseのrootNodeからbooksを取得 */
   private getBookElements(div: HTMLHtmlElement): HTMLCollection {
-    return div.getElementsByClassName("s-result-list")[0].children;
+    return div.getElementsByClassName("s-result-list")[1].children;
   }
 
   /** 1件ごとのnodeからBookItemVMを返す */
