@@ -21,6 +21,8 @@ export default (): React.ReactElement => {
           <RightTextField viewModel={appVM.toolBarVM.MinPriceVM} />
           <span>～</span>
           <RightTextField viewModel={appVM.toolBarVM.MaxPriceVM} />
+          <AdditionalLabel>node</AdditionalLabel>
+          <BasicTextField viewModel={appVM.toolBarVM.NodeVM} />
         </Root>
       ) : (
         <IconButton
@@ -34,7 +36,7 @@ export default (): React.ReactElement => {
 
 const Root = styled.div`
   display: grid;
-  grid-template-columns: auto auto 150px auto 80px auto 80px;
+  grid-template-columns: auto auto 150px auto 80px auto 80px auto 100px;
   align-items: center;
   height: 100%;
 `;

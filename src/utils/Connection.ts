@@ -67,6 +67,7 @@ export type UrlParams = {
   rh: string;
   bbn: string;
   s: string;
+  node: string;
 };
 
 const connection = new Connection();

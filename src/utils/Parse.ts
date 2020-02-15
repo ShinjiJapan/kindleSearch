@@ -14,9 +14,11 @@ class Parse {
 
       const children = this.getBookElements(div);
 
-      const books = Array.prototype.map
-        .call(children, this.createBookFromElement)
-        .filter(x => x) as BookItemModel[];
+      const books = children
+        ? (Array.prototype.map
+            .call(children, this.createBookFromElement)
+            .filter(x => x) as BookItemModel[])
+        : [];
 
       return { books: books, pageCount: this.getPageCount(div) };
     } catch (ex) {
@@ -51,8 +53,9 @@ class Parse {
   };
 
   /** responseのrootNodeからbooksを取得 */
-  private getBookElements(div: HTMLHtmlElement): HTMLCollection {
-    return div.getElementsByClassName("s-result-list")[1].children;
+  private getBookElements(div: HTMLHtmlElement): HTMLCollection | undefined {
+    const root = div.getElementsByClassName("s-result-list")[1];
+    return root ? root.children : undefined;
   }
 
   /** 1件ごとのnodeからBookItemVMを返す */

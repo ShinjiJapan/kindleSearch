@@ -50,6 +50,7 @@ export default class ToolBarVM extends BindableBase {
       rh: this.getRhQueryString(true),
       bbn: this.categorySelectorVM.selectedKey,
       s: this.amazonSortDropdownVM.selectedKey,
+      node: this.NodeVM.value,
     };
 
     for (let i = 0; i < this.bulkPageCount; i++) {
@@ -93,7 +94,7 @@ export default class ToolBarVM extends BindableBase {
       page.toString()
     );
     const result = parse.exec(response);
-    console.log("pageCount : " + result.pageCount);
+    // console.log("pageCount : " + result.pageCount);
 
     return result;
   };
@@ -269,6 +270,7 @@ export default class ToolBarVM extends BindableBase {
   public categorySelectorVM = new CategorySelectorVM();
 
   public SearchAuthorVM = new BasicTextFieldVM(this.onSearchAsync);
+  public NodeVM = new BasicTextFieldVM(this.onSearchAsync);
   public MinPriceVM = new BasicTextFieldVM(this.onSearchAsync);
   public MaxPriceVM = new BasicTextFieldVM(this.onSearchAsync);
 
