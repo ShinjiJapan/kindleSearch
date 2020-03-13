@@ -54,7 +54,10 @@ class Parse {
 
   /** responseのrootNodeからbooksを取得 */
   private getBookElements(div: HTMLHtmlElement): HTMLCollection | undefined {
-    const root = div.getElementsByClassName("s-result-list")[1];
+    const results = div.getElementsByClassName("s-result-list");
+    const root = results[0].innerHTML.includes("image")
+      ? results[0]
+      : results[1];
     return root ? root.children : undefined;
   }
 
