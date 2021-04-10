@@ -43,6 +43,7 @@ const Root = styled.div`
 const AdditionalLabel = styled.span`
   margin-left: 10px;
   margin-right: 4px;
+  width: 35px;
 `;
 const RightTextField = styled(BasicTextField)`
   & > div > div > input {
