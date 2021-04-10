@@ -135,11 +135,17 @@ class Parse {
    * bookElementから著者名と著者URLを取得
    */
   private getAuthors(bookElement: Element): Author[] {
-    const authorRoot = bookElement.getElementsByClassName(
+    let authorRoot = bookElement.getElementsByClassName(
       "a-row a-size-base a-color-secondary"
     )[0];
 
     const authors: Author[] = [];
+
+    // 階層が変わっていた場合の対応 2021/04/10時点ではこちらの挙動。
+    // ちょくちょく戻ったりするので両対応とする
+    if (authorRoot.children.length === 1) {
+      authorRoot = authorRoot.children[0];
+    }
 
     // 1件目はタイトルが入ってたりするのでスキップ
     for (let i = 1; i < authorRoot.children.length; i++) {
