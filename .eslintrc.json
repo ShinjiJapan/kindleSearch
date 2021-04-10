@@ -10,7 +10,7 @@
     "react/jsx-uses-react": 1,
     "@typescript-eslint/indent": 0,
     "prettier/prettier": "error",
-    "@typescript-eslint/camelcase": 1,
+    "@typescript-eslint/naming-convention": 1,
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/array-type": [
@@ -28,7 +28,6 @@
       {
         "allowExpressions": true
       }
-    ],
-    "@typescript-eslint/interface-name-prefix": 1
+    ]
   }
 }

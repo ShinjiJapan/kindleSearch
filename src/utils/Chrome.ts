@@ -1,14 +1,16 @@
 declare const chrome: any;
 class ChromeUtil {
-  public sendMessage = <T = any>(param: object): Promise<T> => {
-    return new Promise(resolve => {
+  public sendMessage = <T = any>(
+    param: Record<string, unknown>
+  ): Promise<T> => {
+    return new Promise((resolve) => {
       chrome.runtime.sendMessage(param, (result: T) => {
         resolve(result);
       });
     });
   };
 
-  public sendTabMessage = (param: object): void => {
+  public sendTabMessage = (param: Record<string, unknown>): void => {
     chrome.tabs.getSelected(null, (tab: any) => {
       chrome.tabs.sendMessage(tab.id, param);
     });

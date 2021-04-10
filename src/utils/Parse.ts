@@ -17,7 +17,7 @@ class Parse {
       const books = children
         ? (Array.prototype.map
             .call(children, this.createBookFromElement)
-            .filter(x => x) as BookItemModel[])
+            .filter((x) => x) as BookItemModel[])
         : [];
 
       return { books: books, pageCount: this.getPageCount(div) };
@@ -47,8 +47,8 @@ class Parse {
 
     return Math.max(
       ...(Array.prototype.map
-        .call(pagenation.children, child => +child.innerText)
-        .filter(x => x) as any)
+        .call(pagenation.children, (child) => +child.innerText)
+        .filter((x) => x) as any)
     );
   };
 

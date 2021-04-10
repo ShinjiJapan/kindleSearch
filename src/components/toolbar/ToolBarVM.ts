@@ -111,7 +111,7 @@ export default class ToolBarVM extends BindableBase {
 
     if (is16) common.push(this.categoryQueryString);
 
-    return common.filter(x => x !== "").join(",");
+    return common.filter((x) => x !== "").join(",");
   };
 
   private get categoryQueryString(): string {
@@ -189,11 +189,11 @@ export default class ToolBarVM extends BindableBase {
   public filteredBooks: BookItemModel[] = [];
   /** booksを一覧に追加 */
   private addNewBooks = (books: BookItemModel[]): void => {
-    books.forEach(book => {
+    books.forEach((book) => {
       if (
         (book.isUnlimited || !this.unlimitedOnlyCheckboxVM.checked) && // unlimitedの検索結果に非対象商品が混ざるようになったため
         !this.books.some(
-          x =>
+          (x) =>
             //重複は除外
             x.title === book.title && x.authors[0].name === book.authors[0].name
         )
@@ -225,7 +225,7 @@ export default class ToolBarVM extends BindableBase {
   private execFilter = (): void => {
     this.filteredBooks = this.books
       .filter(
-        book =>
+        (book) =>
           (!this.localSearchWrodVM.value ||
             this.isMatch(book, this.localSearchWrodVM.splitedWords)) &&
           !this.isMatch(book, this.localMuteWordVM.splitedWords)
@@ -237,13 +237,13 @@ export default class ToolBarVM extends BindableBase {
           case "titleDesc":
             return a.title < b.title ? 1 : -1;
           case "authorAsc":
-            return a.authors.map(x => x.name).join(",") >
-              b.authors.map(x => x.name).join(",")
+            return a.authors.map((x) => x.name).join(",") >
+              b.authors.map((x) => x.name).join(",")
               ? 1
               : -1;
           case "authorDesc":
-            return a.authors.map(x => x.name).join(",") <
-              b.authors.map(x => x.name).join(",")
+            return a.authors.map((x) => x.name).join(",") <
+              b.authors.map((x) => x.name).join(",")
               ? 1
               : -1;
           default:
@@ -254,9 +254,9 @@ export default class ToolBarVM extends BindableBase {
 
   private isMatch = (book: BookItemModel, words: string[]): boolean => {
     return (
-      words.some(word => book.title.toLocaleLowerCase().includes(word)) ||
-      words.some(word =>
-        book.authors.some(author =>
+      words.some((word) => book.title.toLocaleLowerCase().includes(word)) ||
+      words.some((word) =>
+        book.authors.some((author) =>
           author.name.toLocaleLowerCase().includes(word)
         )
       )

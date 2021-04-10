@@ -14,7 +14,7 @@ const App = (): React.ReactElement => {
     <Root>
       <ToolBar />
       <Container>
-        {appVM.filteredBooks.map(book => (
+        {appVM.filteredBooks.map((book) => (
           <BookItem key={book.url} {...book} />
         ))}
         {appVM.isProgress ? (

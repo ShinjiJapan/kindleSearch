@@ -12,7 +12,7 @@ class Connection {
     return (
       "?" +
       Object.keys(params)
-        .map(key => `${key}=${encodeURIComponent(params[key])}`)
+        .map((key) => `${key}=${encodeURIComponent(params[key])}`)
         .join("&")
     );
   };

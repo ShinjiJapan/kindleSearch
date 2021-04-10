@@ -14,8 +14,8 @@ export class ExecFilterTextFieldVM extends BindableBase {
     this.value = newValue || "";
     this.splitedWords = this.value
       .split(" ")
-      .filter(x => x)
-      .map(x => x.toLocaleLowerCase());
+      .filter((x) => x)
+      .map((x) => x.toLocaleLowerCase());
     this.onPropertyChanged();
     this.execFilter();
   };
