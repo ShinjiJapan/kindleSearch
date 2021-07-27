@@ -195,7 +195,9 @@ export default class ToolBarVM extends BindableBase {
         !this.books.some(
           (x) =>
             //重複は除外
-            x.title === book.title && x.authors[0].name === book.authors[0].name
+            x.authors[0] && // スポンサープロダクト商品が混ざることがあり、その場合x.authorsが取得できない
+            x.title === book.title &&
+            x.authors[0].name === book.authors[0].name
         )
       ) {
         this.books.push(book);

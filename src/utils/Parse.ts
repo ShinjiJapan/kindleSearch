@@ -42,7 +42,13 @@ class Parse {
 
   /** 検索結果の総ページ数を取得 */
   private getPageCount = (elm: Element): number => {
-    const pagenation = elm.getElementsByClassName("a-pagination")[0];
+    let pagenation = elm.getElementsByClassName("a-pagination")[0];
+
+    // 一部ユーザーでs-pagination-stripに変わっている。戻ることも?
+    if (!pagenation) {
+      pagenation = elm.getElementsByClassName("s-pagination-strip")[0];
+    }
+
     if (!pagenation) return 1;
 
     return Math.max(
