@@ -1,17 +1,21 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "version": "1.99",
   "name": "Kindle Search",
   "description": "kindle検索",
-  "browser_action": {
+  "action": {
     "default_icon": "icon.png",
     "default_popup": "index.html"
   },
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
-  "permissions": ["activeTab", "https://www.amazon.co.jp/"],
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.amazon.co.jp/"
+  ],
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
