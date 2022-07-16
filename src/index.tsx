@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
-import * as serviceWorker from "./serviceWorker";
 
 declare const chrome: any;
 
@@ -20,4 +19,4 @@ if (chrome && chrome.tabs) {
   // ローカル実行の場合
   ReactDOM.render(<App />, document.getElementById("root"));
 }
-serviceWorker.unregister();
+// serviceWorker.unregister();
