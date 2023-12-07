@@ -93,6 +93,7 @@ export default class ToolBarVM extends BindableBase {
       this.params,
       page.toString()
     );
+    console.log(response);
     const result = parse.exec(response);
     // console.log("pageCount : " + result.pageCount);
 

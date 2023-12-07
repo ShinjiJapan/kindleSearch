@@ -6,13 +6,17 @@ class Parse {
     val: string
   ): { books: BookItemModel[]; pageCount: number } => {
     try {
+      console.log(1);
       const div = document.createElement("html");
       div.innerHTML = val;
 
+      console.log(2);
       // 指定されたカテゴリーで1件も見つからなかった場合、勝手に「すべての結果を表示します」とかやられるのでなかったことにする
       if (this.hasNoResult(div)) return { books: [], pageCount: 0 };
 
+      console.log(3);
       const children = this.getBookElements(div);
+      console.log(children);
 
       const books = children
         ? (Array.prototype.map
@@ -20,6 +24,7 @@ class Parse {
             .filter((x) => x) as BookItemModel[])
         : [];
 
+      console.log(4);
       return { books: books, pageCount: this.getPageCount(div) };
     } catch (ex) {
       throw ex;
@@ -90,7 +95,10 @@ class Parse {
   /** Unlimited対象作品であるか */
   private getIsUnlimited = (bookElement: Element): boolean => {
     return (
-      bookElement.getElementsByClassName("a-icon-kindle-unlimited").length > 0
+      bookElement.getElementsByClassName("a-icon-kindle-unlimited").length >
+        0 ||
+      bookElement.getElementsByClassName("apex-kindle-unlimited-badge").length >
+        0
     );
   };
 

@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
@@ -12,11 +12,15 @@ if (chrome && chrome.tabs) {
       chrome.tabs.create({ url: document.location.href });
     } else {
       // ポップアップから別タブで開いた後
-      ReactDOM.render(<App />, document.getElementById("root"));
+      const container = document.getElementById("root");
+      const root = createRoot(container!);
+      root.render(<App />);
     }
   });
 } else {
   // ローカル実行の場合
-  ReactDOM.render(<App />, document.getElementById("root"));
+  const container = document.getElementById("root");
+  const root = createRoot(container!);
+  root.render(<App />);
 }
 // serviceWorker.unregister();
