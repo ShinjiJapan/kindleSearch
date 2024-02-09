@@ -5,5 +5,11 @@
 アプリが [https://localhost:3000](https://localhost:3000) で開きます。
 エディタでソースコードを変更するとリロードされます。
 
-### `npm run build`
-Chrome拡張用にアプリケーションがビルドされます。
+### バージョン上げ
+public/manifest.jsonのバージョンを適当に上げる
+
+### `npm run buildl`
+Chrome拡張用にアプリケーションがビルドされzipが作成されます。
+
+https://chrome.google.com/webstore/devconsole
+にログイン

@@ -98,7 +98,8 @@ class Parse {
       bookElement.getElementsByClassName("a-icon-kindle-unlimited").length >
         0 ||
       bookElement.getElementsByClassName("apex-kindle-unlimited-badge").length >
-        0
+        0 ||
+      bookElement.getElementsByClassName("apex-kindle-program-badge").length > 0
     );
   };
 
