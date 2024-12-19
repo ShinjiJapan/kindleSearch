@@ -56,10 +56,13 @@ class Parse {
 
     if (!pagenation) return 1;
 
+    //pagenation.childrenだったがpagenation.children[0].childrenに変更されたので両対応
+    const elemets = Array.from(pagenation.children).concat(
+      Array.from(pagenation.children[0].children)
+    ) as HTMLElement[];
+
     return Math.max(
-      ...(Array.prototype.map
-        .call(pagenation.children, (child) => +child.innerText)
-        .filter((x) => x) as any)
+      ...(elemets.map((child) => +child.innerText).filter((x) => x) as any)
     );
   };
 
@@ -187,11 +190,18 @@ class Parse {
 
   /** bookElementからタイトルを取得 */
   private getTitle(bookElement: Element): string {
-    return this.escapeHTML(
+    // 1階層深くなっていたので両対応
+    const title =
+      (
+        bookElement.getElementsByClassName(
+          "a-size-medium a-color-base a-text-normal"
+        )[0].firstChild as HTMLElement
+      ).innerHTML ||
       bookElement.getElementsByClassName(
         "a-size-medium a-color-base a-text-normal"
-      )[0].innerHTML
-    );
+      )[0].innerHTML;
+
+    return this.escapeHTML(title);
   }
 
   /** bookElementからサムネイルの画像URLを取得 */
