@@ -90,7 +90,7 @@ class Parse {
         price: this.getPrice(bookElement),
         isUnlimited: this.getIsUnlimited(bookElement),
       };
-    } catch (ex) {
+    } catch {
       return undefined;
     }
   };
