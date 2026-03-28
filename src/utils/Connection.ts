@@ -1,6 +1,6 @@
 import { chromeUtil } from "./Chrome";
 
-const baseUrl = "/s";
+const baseUrl = "/api/s";
 
 class Connection {
   /** Urlパラメータ文字列を作成 */
@@ -21,8 +21,8 @@ class Connection {
     url: string,
     params?: { [key: string]: string }
   ): Promise<string> => {
-    if (document.location.href.startsWith("https")) {
-      // serverで実行の場合
+    if (document.location.protocol.startsWith("http")) {
+      // serverで実行の場合(http/https)
       return await this.getAsyncServer(url, params);
     } else {
       // Chrome拡張として実行の場合

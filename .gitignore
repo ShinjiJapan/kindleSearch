@@ -26,6 +26,10 @@ yarn-error.log*
 *.zip
 *.md
 /*.html
+!/index.html
 memo
 
 .sfdx
+.claude
+.playwright-mcp
+

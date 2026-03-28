@@ -1,15 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install:*)",
-      "Bash(npx tsc:*)",
-      "Bash(npx npm-check-updates:*)",
-      "Bash(npx react-scripts:*)",
-      "Bash(npm ls:*)",
-      "Bash(npm dedupe:*)",
-      "Bash(npm start:*)",
-      "Bash(rm -rf node_modules package-lock.json)",
-      "Bash(yarn install:*)"
-    ]
+      "Bash(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Read(*)",
+      "mcp__plugin_playwright_playwright__*"
+    ],
+    "defaultMode": "bypassPermissions"
   }
 }

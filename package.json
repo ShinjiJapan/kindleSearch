@@ -2,9 +2,16 @@
   "name": "ulsearch",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@fluentui/react": "^8.120.0",
-    "@types/jest": "29.5.14",
+    "lodash": "^4.17.21",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rxjs": "^7.8.2",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
     "@types/lodash": "^4.17.16",
     "@types/node": "22.13.10",
     "@types/react": "19.0.10",
@@ -12,43 +19,20 @@
     "@types/styled-components": "^5.1.34",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
-    "@typescript-eslint/typescript-estree": "^8.26.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
-    "lodash": "^4.17.21",
     "prettier": "^3.5.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
-    "rxjs": "^7.8.2",
-    "styled-components": "^6.1.15",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "vite": "^6.3.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "buildl": "yarn build && yarn license && powershell compress-archive build build -Force",
-    "license": "yarn licenses generate-disclaimer --ignore-platform --ignore-optional --ignore-engines > build\\licenses.txt",
-    "test": "react-scripts test",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint -c ./.eslintrc.json src/**/*.{ts,tsx}",
-    "lintfix": "eslint --fix -c ./.eslintrc.json src/**/*.{ts,tsx}",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "proxy": "https://www.amazon.co.jp"
+    "lintfix": "eslint --fix -c ./.eslintrc.json src/**/*.{ts,tsx}"
+  }
 }
