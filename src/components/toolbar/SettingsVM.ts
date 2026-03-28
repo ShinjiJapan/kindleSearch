@@ -25,6 +25,13 @@ export default class SettingsVM extends BindableBase {
     this.defaultCategory = saved.defaultCategory;
     this.language = saved.language;
     this.region = saved.region;
+    // デフォルト値が設定されている場合、起動時にlocalStorageへ反映
+    if (this.defaultSort) {
+      localStorage.setItem("AmazonSort", this.defaultSort);
+    }
+    if (this.defaultCategory) {
+      localStorage.setItem("AmazonCategory", this.defaultCategory);
+    }
   }
 
   public open = (): void => {
@@ -47,9 +54,6 @@ export default class SettingsVM extends BindableBase {
       region: this.region,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-    // 各VMが参照するlocalStorageキーにも反映
-    localStorage.setItem("AmazonSort", this.defaultSort);
-    localStorage.setItem("AmazonCategory", this.defaultCategory);
     this.onApply(settings);
     this.isOpen = false;
     this.onPropertyChanged();

@@ -9,7 +9,7 @@ import { TextField } from "@fluentui/react/lib/TextField";
 import { Dropdown, IDropdownOption } from "@fluentui/react/lib/Dropdown";
 import styled from "styled-components";
 import { appVM } from "../../AppVM";
-import { getCurrentRegion } from "../../config/RegionConfig";
+import { REGIONS } from "../../config/RegionConfig";
 import { jpCategories } from "../../config/JPCategories";
 import { usCategories } from "../../config/USCategories";
 
@@ -17,18 +17,25 @@ const Settings = (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.settingsVM;
   viewModel.useBind();
 
-  const { labels } = getCurrentRegion();
   const isJa = viewModel.language === "ja";
+  const labels = isJa ? REGIONS.JP.labels : REGIONS.US.labels;
+
+  const keepLabel = isJa ? "前回の値を保持" : "Keep last used";
 
   const sortOptions: IDropdownOption[] = [
+    { key: "", text: keepLabel },
     { key: "relevancerank", text: labels.sort.relevancerank },
     { key: "date-desc-rank", text: labels.sort["date-desc-rank"] },
     { key: "date-asc-rank", text: labels.sort["date-asc-rank"] },
     { key: "review-rank", text: labels.sort["review-rank"] },
   ];
 
-  const categoryOptions =
+  const baseCategoryOptions =
     viewModel.region === "US" ? usCategories : jpCategories;
+  const categoryOptions: IDropdownOption[] = [
+    { key: "", text: keepLabel },
+    ...baseCategoryOptions,
+  ];
 
   return (
     <Root>

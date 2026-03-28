@@ -166,7 +166,7 @@ class Parse {
       authorRoot = authorRoot.children[0];
     }
 
-    const { sellerLabel, authorPrefix } = getCurrentRegion().parse;
+    const { sellerLabel, authorPrefix, authorSeparators } = getCurrentRegion().parse;
     let foundPrefix = !authorPrefix; // JPではprefixなし→最初から収集開始
 
     // 1件目はタイトルが入ってたりするのでスキップ
@@ -174,7 +174,7 @@ class Parse {
       const child = authorRoot.children[i];
       const val = this.escapeHTML(child.innerHTML).trim();
 
-      if ("|,、".includes(val)) continue;
+      if (!val || authorSeparators.includes(val)) continue;
       if (val === sellerLabel) break;
 
       // USでは "by" の後から著者を収集

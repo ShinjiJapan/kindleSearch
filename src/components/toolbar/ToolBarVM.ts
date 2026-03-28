@@ -23,13 +23,44 @@ export default class ToolBarVM extends BindableBase {
   public settingsVM = new SettingsVM((settings: SettingsModel) => {
     setCurrentLanguage(settings.language);
     setCurrentRegion(settings.region);
-    this.amazonSortDropdownVM = new AmazonSortDropdownVM();
-    this.amazonSortDropdownVM.selectedKey = settings.defaultSort;
+    const { labels } = getCurrentRegion();
+    // ソート順ラベル更新
+    const { sort } = labels;
+    this.amazonSortDropdownVM.options = [
+      { key: "relevancerank", text: sort.relevancerank },
+      { key: "date-desc-rank", text: sort["date-desc-rank"] },
+      { key: "date-asc-rank", text: sort["date-asc-rank"] },
+      { key: "review-rank", text: sort["review-rank"] },
+    ];
+    if (settings.defaultSort) {
+      this.amazonSortDropdownVM.selectedKey = settings.defaultSort;
+      localStorage.setItem("AmazonSort", settings.defaultSort);
+    }
     this.amazonSortDropdownVM.onPropertyChanged();
+    // Unlimitedラベル更新
+    this.unlimitedOnlyCheckboxVM.label = labels.unlimitedOnly;
+    this.unlimitedOnlyCheckboxVM.onPropertyChanged();
+    // ローカルソートラベル更新
+    const { localSort } = labels;
+    this.localSorterVM.options = [
+      { key: "", text: localSort.none },
+      { key: "titleAsc", text: localSort.titleAsc },
+      { key: "titleDesc", text: localSort.titleDesc },
+      { key: "authorAsc", text: localSort.authorAsc },
+      { key: "authorDesc", text: localSort.authorDesc },
+    ];
+    this.localSorterVM.onPropertyChanged();
+    // カテゴリ切替
     this.categorySelectorVM.switchRegion(settings.region);
-    this.categorySelectorVM.selectedKey = settings.defaultCategory;
+    if (settings.defaultCategory) {
+      this.categorySelectorVM.selectedKey = settings.defaultCategory;
+      localStorage.setItem("AmazonCategory", settings.defaultCategory);
+    }
     this.categorySelectorVM.onPropertyChanged();
+    // お気に入りVM再描画
+    this.favoriteVM.onPropertyChanged();
     this.execFilter();
+    this.onPropertyChanged();
     appVM.onPropertyChanged();
   });
 

@@ -10,8 +10,8 @@ export interface SettingsModel {
 export const defaultSettings: SettingsModel = {
   globalMuteWords: "",
   globalMuteAuthors: "",
-  defaultSort: "relevancerank",
-  defaultCategory: "2250738051",
+  defaultSort: "",
+  defaultCategory: "",
   language: "ja",
   region: "JP",
 };

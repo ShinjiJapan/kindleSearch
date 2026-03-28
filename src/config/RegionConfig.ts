@@ -12,6 +12,7 @@ export interface ParseConfig {
   sellerLabel: string;
   authorPrefix: string;
   starRatingIndex: number;
+  authorSeparators: string[];
 }
 
 export type SortKey =
@@ -68,6 +69,7 @@ const JP: RegionConfig = {
     sellerLabel: "販売者:",
     authorPrefix: "",
     starRatingIndex: 1,
+    authorSeparators: ["|", ",", "、"],
   },
   labels: {
     sort: {
@@ -116,6 +118,7 @@ const US: RegionConfig = {
     sellerLabel: "Sold by:",
     authorPrefix: "by",
     starRatingIndex: 0,
+    authorSeparators: ["|", ",", "、", "and", ", et al."],
   },
   labels: {
     sort: {
