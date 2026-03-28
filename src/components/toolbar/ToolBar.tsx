@@ -12,6 +12,7 @@ import LocalSorter from "./LocalSorter";
 import Term from "./Term";
 import CategorySelector from "./CategorySelector";
 import DetailArea from "./DetailArea";
+import Favorite from "./Favorite";
 
 initializeIcons(/* optional base url */);
 
@@ -21,32 +22,37 @@ const ToolBar = (): React.ReactElement => {
 
   return (
     <Root>
-      <Wrapper>
-        <AmazonCondition>
-          <AmazonSearchWord />
-          <AmazonSortDropdown />
-          <UnlimitedOnlyCheckbox />
-          <CategorySelector />
-          <Term fromTo="from" />
-          <span>～</span>
-          <Term fromTo="to" />
+      <ConditionsArea>
+        <Wrapper>
+          <AmazonCondition>
+            <AmazonSearchWord />
+            <AmazonSortDropdown />
+            <UnlimitedOnlyCheckbox />
+            <CategorySelector />
+            <Term fromTo="from" />
+            <span>～</span>
+            <Term fromTo="to" />
 
-          <DetailArea />
+            <DetailArea />
 
-          <SearchButton text="検索" onClick={() => viewModel.onSearchAsync()} />
-        </AmazonCondition>
-      </Wrapper>
+            <SearchButton text="検索" onClick={() => viewModel.onSearchAsync()} />
+          </AmazonCondition>
+        </Wrapper>
 
-      <Wrapper>
-        <LocalCondition>
-          <Label>ローカル条件</Label>
-          <LocalSearchWord />
-          <span>を含む</span>
-          <LocalMuteWord />
-          <span>を含まない</span>
-          <LocalSorter />
-        </LocalCondition>
-      </Wrapper>
+        <Wrapper>
+          <LocalCondition>
+            <Label>ローカル条件</Label>
+            <LocalSearchWord />
+            <span>を含む</span>
+            <LocalMuteWord />
+            <span>を含まない</span>
+            <LocalSorter />
+          </LocalCondition>
+        </Wrapper>
+      </ConditionsArea>
+      <FavoriteArea>
+        <Favorite />
+      </FavoriteArea>
     </Root>
   );
 };
@@ -83,6 +89,19 @@ const Wrapper = styled.div`
 const Root = styled.div`
   display: flex;
   background-color: #dde5ff;
+  align-items: flex-start;
+`;
+
+const ConditionsArea = styled.div`
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  flex: 1;
+`;
+
+const FavoriteArea = styled.div`
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding-right: 4px;
 `;

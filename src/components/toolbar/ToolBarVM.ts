@@ -12,6 +12,8 @@ import TermVM from "./TermVM";
 import CategorySelectorVM from "./CategorySelectorVM";
 import { BasicTextFieldVM } from "./BasicTextFieldVM";
 import DetailAreaVM from "./DetailAreaVM";
+import FavoriteVM from "./FavoriteVM";
+import { FavoriteModel } from "./FavoriteModel";
 
 export default class ToolBarVM extends BindableBase {
   /** amazon検索ソート順 */
@@ -279,4 +281,68 @@ export default class ToolBarVM extends BindableBase {
 
   public detailAreaVM = new DetailAreaVM();
   // public FreeQueryVM = new BasicTextFieldVM(this.onSearchAsync);
+
+  private saveCurrent = (): FavoriteModel => {
+    return {
+      name: "",
+      amazonSearchWord: this.amazonSearchWordVM.value,
+      amazonSort: this.amazonSortDropdownVM.selectedKey,
+      unlimitedOnly: this.unlimitedOnlyCheckboxVM.checked,
+      category: this.categorySelectorVM.selectedKey,
+      fromDate: this.fromDateVM.value ? this.fromDateVM.value.toISOString() : null,
+      toDate: this.toDateVM.value ? this.toDateVM.value.toISOString() : null,
+      author: this.SearchAuthorVM.value,
+      minPrice: this.MinPriceVM.value,
+      maxPrice: this.MaxPriceVM.value,
+      node: this.NodeVM.value,
+      localSearchWord: this.localSearchWrodVM.value || "",
+      localMuteWord: this.localMuteWordVM.value || "",
+      localSort: this.localSorterVM.selectedKey,
+    };
+  };
+
+  private restoreFavorite = (fav: FavoriteModel): void => {
+    this.amazonSearchWordVM.value = fav.amazonSearchWord;
+    this.amazonSortDropdownVM.selectedKey = fav.amazonSort;
+    this.unlimitedOnlyCheckboxVM.checked = fav.unlimitedOnly;
+    this.categorySelectorVM.selectedKey = fav.category;
+    this.fromDateVM.value = fav.fromDate ? new Date(fav.fromDate) : undefined;
+    this.toDateVM.value = fav.toDate ? new Date(fav.toDate) : undefined;
+    this.SearchAuthorVM.value = fav.author;
+    this.MinPriceVM.value = fav.minPrice;
+    this.MaxPriceVM.value = fav.maxPrice;
+    this.NodeVM.value = fav.node;
+    this.localSearchWrodVM.value = fav.localSearchWord;
+    this.localSearchWrodVM.splitedWords = fav.localSearchWord
+      .split(" ")
+      .filter((x) => x)
+      .map((x) => x.toLocaleLowerCase());
+    this.localMuteWordVM.value = fav.localMuteWord;
+    this.localMuteWordVM.splitedWords = fav.localMuteWord
+      .split(" ")
+      .filter((x) => x)
+      .map((x) => x.toLocaleLowerCase());
+    this.localSorterVM.selectedKey = fav.localSort;
+
+    // 各コンポーネントのUIを更新
+    this.amazonSearchWordVM.onPropertyChanged();
+    this.amazonSortDropdownVM.onPropertyChanged();
+    this.unlimitedOnlyCheckboxVM.onPropertyChanged();
+    this.categorySelectorVM.onPropertyChanged();
+    this.fromDateVM.onPropertyChanged();
+    this.toDateVM.onPropertyChanged();
+    this.SearchAuthorVM.onPropertyChanged();
+    this.MinPriceVM.onPropertyChanged();
+    this.MaxPriceVM.onPropertyChanged();
+    this.NodeVM.onPropertyChanged();
+    this.localSearchWrodVM.onPropertyChanged();
+    this.localMuteWordVM.onPropertyChanged();
+    this.localSorterVM.onPropertyChanged();
+  };
+
+  public favoriteVM = new FavoriteVM(
+    this.saveCurrent,
+    this.restoreFavorite,
+    this.onSearchAsync
+  );
 }
