@@ -16,12 +16,17 @@ import FavoriteVM from "./FavoriteVM";
 import { FavoriteModel } from "./FavoriteModel";
 import SettingsVM from "./SettingsVM";
 import { SettingsModel } from "./SettingsModel";
+import { setCurrentLanguage, setCurrentRegion, getCurrentRegion } from "../../config/RegionConfig";
 
 export default class ToolBarVM extends BindableBase {
   /** 設定 */
   public settingsVM = new SettingsVM((settings: SettingsModel) => {
+    setCurrentLanguage(settings.language);
+    setCurrentRegion(settings.region);
+    this.amazonSortDropdownVM = new AmazonSortDropdownVM();
     this.amazonSortDropdownVM.selectedKey = settings.defaultSort;
     this.amazonSortDropdownVM.onPropertyChanged();
+    this.categorySelectorVM.switchRegion(settings.region);
     this.categorySelectorVM.selectedKey = settings.defaultCategory;
     this.categorySelectorVM.onPropertyChanged();
     this.execFilter();
@@ -139,7 +144,7 @@ export default class ToolBarVM extends BindableBase {
 
   private get unlimitedQueryString(): string {
     return this.unlimitedOnlyCheckboxVM.checked
-      ? "p_n_feature_nineteen_browse-bin:3169286051"
+      ? "p_n_feature_nineteen_browse-bin:" + getCurrentRegion().site.unlimitedFilterId
       : "";
   }
 

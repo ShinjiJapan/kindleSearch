@@ -1,32 +1,20 @@
 import { BindableBase } from "../../BindableBase";
 import { IDropdownOption } from "@fluentui/react/lib/Dropdown";
+import { getCurrentRegion } from "../../config/RegionConfig";
 
 export class LocalSorterVM extends BindableBase {
   public constructor(private onSort: () => void) {
     super();
+    const { localSort } = getCurrentRegion().labels;
+    this.options = [
+      { key: "", text: localSort.none },
+      { key: "titleAsc", text: localSort.titleAsc },
+      { key: "titleDesc", text: localSort.titleDesc },
+      { key: "authorAsc", text: localSort.authorAsc },
+      { key: "authorDesc", text: localSort.authorDesc },
+    ];
   }
-  public options: IDropdownOption[] = [
-    {
-      key: "",
-      text: "並び替え無し",
-    },
-    {
-      key: "titleAsc",
-      text: "作品名(昇順)",
-    },
-    {
-      key: "titleDesc",
-      text: "作品名(降順)",
-    },
-    {
-      key: "authorAsc",
-      text: "著者名(昇順)",
-    },
-    {
-      key: "authorDesc",
-      text: "著者名(降順)",
-    },
-  ];
+  public options: IDropdownOption[];
 
   public selectedKey = "";
   public onChange = (

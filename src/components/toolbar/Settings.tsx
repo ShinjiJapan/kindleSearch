@@ -9,24 +9,32 @@ import { TextField } from "@fluentui/react/lib/TextField";
 import { Dropdown, IDropdownOption } from "@fluentui/react/lib/Dropdown";
 import styled from "styled-components";
 import { appVM } from "../../AppVM";
-import { categories } from "./CategorySelectorVM";
-
-const sortOptions: IDropdownOption[] = [
-  { key: "relevancerank", text: "アマゾンおすすめ商品" },
-  { key: "date-desc-rank", text: "出版年月が新しい順番" },
-  { key: "date-asc-rank", text: "出版年月が古い順番" },
-  { key: "review-rank", text: "レビューの評価順" },
-];
+import { getCurrentRegion } from "../../config/RegionConfig";
+import { jpCategories } from "../../config/JPCategories";
+import { usCategories } from "../../config/USCategories";
 
 const Settings = (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.settingsVM;
   viewModel.useBind();
 
+  const { labels } = getCurrentRegion();
+  const isJa = viewModel.language === "ja";
+
+  const sortOptions: IDropdownOption[] = [
+    { key: "relevancerank", text: labels.sort.relevancerank },
+    { key: "date-desc-rank", text: labels.sort["date-desc-rank"] },
+    { key: "date-asc-rank", text: labels.sort["date-asc-rank"] },
+    { key: "review-rank", text: labels.sort["review-rank"] },
+  ];
+
+  const categoryOptions =
+    viewModel.region === "US" ? usCategories : jpCategories;
+
   return (
     <Root>
       <GearButton
         iconProps={{ iconName: "Settings" }}
-        title="設定"
+        title={isJa ? "設定" : "Settings"}
         onClick={viewModel.open}
       />
       <Dialog
@@ -34,14 +42,42 @@ const Settings = (): React.ReactElement => {
         onDismiss={viewModel.close}
         dialogContentProps={{
           type: DialogType.normal,
-          title: "設定",
+          title: isJa ? "設定" : "Settings",
         }}
         minWidth={460}
         modalProps={{ isBlocking: false }}
       >
         <Section>
+          <Dropdown
+            label={isJa ? "言語" : "Language"}
+            options={[
+              { key: "ja", text: "日本語" },
+              { key: "en", text: "English" },
+            ]}
+            selectedKey={viewModel.language}
+            onChange={(_, opt) => {
+              viewModel.language = opt!.key as string;
+              viewModel.onPropertyChanged();
+            }}
+          />
+        </Section>
+        <Section>
+          <Dropdown
+            label={isJa ? "リージョン" : "Region"}
+            options={[
+              { key: "JP", text: "Amazon.co.jp (日本)" },
+              { key: "US", text: "Amazon.com (US)" },
+            ]}
+            selectedKey={viewModel.region}
+            onChange={(_, opt) => {
+              viewModel.region = opt!.key as string;
+              viewModel.onPropertyChanged();
+            }}
+          />
+        </Section>
+        <Section>
           <TextField
-            label="NGワード（1行に1つ）"
+            label={isJa ? "NGワード（1行に1つ）" : "Mute words (one per line)"}
             multiline
             rows={4}
             value={viewModel.globalMuteWords}
@@ -53,7 +89,7 @@ const Settings = (): React.ReactElement => {
         </Section>
         <Section>
           <TextField
-            label="NG著者（1行に1つ）"
+            label={isJa ? "NG著者（1行に1つ）" : "Mute authors (one per line)"}
             multiline
             rows={4}
             value={viewModel.globalMuteAuthors}
@@ -65,7 +101,7 @@ const Settings = (): React.ReactElement => {
         </Section>
         <Section>
           <Dropdown
-            label="デフォルトソート順"
+            label={isJa ? "デフォルトソート順" : "Default sort"}
             options={sortOptions}
             selectedKey={viewModel.defaultSort}
             onChange={(_, o) => {
@@ -76,8 +112,8 @@ const Settings = (): React.ReactElement => {
         </Section>
         <Section>
           <Dropdown
-            label="デフォルトカテゴリ"
-            options={categories}
+            label={isJa ? "デフォルトカテゴリ" : "Default category"}
+            options={categoryOptions}
             selectedKey={viewModel.defaultCategory}
             onChange={(_, o) => {
               viewModel.defaultCategory = o!.key.toString();
@@ -86,8 +122,14 @@ const Settings = (): React.ReactElement => {
           />
         </Section>
         <DialogFooter>
-          <PrimaryButton text="保存" onClick={viewModel.save} />
-          <DefaultButton text="キャンセル" onClick={viewModel.close} />
+          <PrimaryButton
+            text={isJa ? "保存" : "Save"}
+            onClick={viewModel.save}
+          />
+          <DefaultButton
+            text={isJa ? "キャンセル" : "Cancel"}
+            onClick={viewModel.close}
+          />
         </DialogFooter>
       </Dialog>
     </Root>

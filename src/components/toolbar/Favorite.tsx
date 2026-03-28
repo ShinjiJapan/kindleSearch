@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { IconButton } from "@fluentui/react";
 import styled from "styled-components";
 import { appVM } from "../../AppVM";
+import { getCurrentRegion } from "../../config/RegionConfig";
 
 const Favorite = (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.favoriteVM;
@@ -26,7 +27,7 @@ const Favorite = (): React.ReactElement => {
   }, [viewModel.isOpen]);
 
   const handleAdd = () => {
-    const name = prompt("お気に入り名を入力してください");
+    const name = prompt(getCurrentRegion().labels.favoritesPrompt);
     if (name) {
       viewModel.add(name);
     }
@@ -37,14 +38,14 @@ const Favorite = (): React.ReactElement => {
       <div ref={buttonRef}>
         <StarButton
           iconProps={{ iconName: "FavoriteStarFill" }}
-          title="お気に入り"
+          title={getCurrentRegion().labels.favorites}
           onClick={viewModel.toggleOpen}
         />
       </div>
       {viewModel.isOpen && (
         <Panel ref={panelRef}>
-          <PanelHeader>お気に入り</PanelHeader>
-          <AddButton onClick={handleAdd}>＋ 現在の検索条件を追加</AddButton>
+          <PanelHeader>{getCurrentRegion().labels.favorites}</PanelHeader>
+          <AddButton onClick={handleAdd}>{getCurrentRegion().labels.favoritesAdd}</AddButton>
           <ItemList>
             {viewModel.favorites.map((fav, i) => (
               <Item key={i}>
@@ -53,7 +54,7 @@ const Favorite = (): React.ReactElement => {
                 </ItemName>
                 <IconButton
                   iconProps={{ iconName: "Delete" }}
-                  title="削除"
+                  title={getCurrentRegion().labels.delete}
                   onClick={() => viewModel.remove(i)}
                   styles={{ root: { width: 28, height: 28 } }}
                 />

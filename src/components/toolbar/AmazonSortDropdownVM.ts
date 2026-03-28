@@ -1,30 +1,21 @@
 import { BindableBase } from "../../BindableBase";
 import { IDropdownOption } from "@fluentui/react/lib/Dropdown";
+import { getCurrentRegion } from "../../config/RegionConfig";
 
 export class AmazonSortDropdownVM extends BindableBase {
   public constructor() {
     super();
+    const { sort } = getCurrentRegion().labels;
+    this.options = [
+      { key: "relevancerank", text: sort.relevancerank },
+      { key: "date-desc-rank", text: sort["date-desc-rank"] },
+      { key: "date-asc-rank", text: sort["date-asc-rank"] },
+      { key: "review-rank", text: sort["review-rank"] },
+    ];
     this.selectedKey = localStorage.getItem("AmazonSort") || "relevancerank";
   }
 
-  public options: IDropdownOption[] = [
-    {
-      key: "relevancerank",
-      text: "アマゾンおすすめ商品",
-    },
-    {
-      key: "date-desc-rank",
-      text: "出版年月が新しい順番",
-    },
-    {
-      key: "date-asc-rank",
-      text: "出版年月が古い順番",
-    },
-    {
-      key: "review-rank",
-      text: "レビューの評価順",
-    },
-  ];
+  public options: IDropdownOption[];
 
   public selectedKey = "";
   public onChange = (

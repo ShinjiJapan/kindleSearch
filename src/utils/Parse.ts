@@ -1,5 +1,5 @@
 import { BookItemModel, Author } from "../components/bookItem/BookItemModel";
-const amazonURL = "https://www.amazon.co.jp";
+import { getCurrentRegion } from "../config/RegionConfig";
 class Parse {
   /** responseをパース */
   public exec = (
@@ -40,8 +40,8 @@ class Parse {
       return true;
 
     return (
-      div.innerHTML.includes("の結果は見つかりませんでした") &&
-      div.innerHTML.includes("のすべての結果を表示します")
+      div.innerHTML.includes(getCurrentRegion().parse.noResultTexts[0]) &&
+      div.innerHTML.includes(getCurrentRegion().parse.noResultTexts[1])
     );
   };
 
@@ -109,7 +109,7 @@ class Parse {
   /** bookElementから価格を取得 */
   private getPrice = (bookElement: Element): string => {
     return (
-      bookElement.getElementsByClassName("a-offscreen")[0].innerHTML +
+      (bookElement.getElementsByClassName("a-offscreen")[0].textContent || "") +
       this.getAltPrice(bookElement)
     );
   };
@@ -121,7 +121,7 @@ class Parse {
         "a-section a-spacing-none a-spacing-top-mini"
       )[0].children[0].children[0].innerHTML;
 
-      const matches = innerHTML.match(/￥+[0-9\,]+/);
+      const matches = innerHTML.match(getCurrentRegion().parse.currency);
       const match = matches && matches[0] ? matches[0] : "";
       return match ? "(" + match + ")" : "";
     } catch {
@@ -133,7 +133,8 @@ class Parse {
   private getStar = (bookElement: Element): number => {
     try {
       const starRoot = bookElement.getElementsByClassName("a-icon-alt")[0];
-      return +starRoot.innerHTML.match(/[0-9.]+/g)![1];
+      const idx = getCurrentRegion().parse.starRatingIndex;
+      return +starRoot.innerHTML.match(/[0-9.]+/g)![idx];
     } catch {
       return 0;
     }
@@ -165,17 +166,27 @@ class Parse {
       authorRoot = authorRoot.children[0];
     }
 
+    const { sellerLabel, authorPrefix } = getCurrentRegion().parse;
+    let foundPrefix = !authorPrefix; // JPではprefixなし→最初から収集開始
+
     // 1件目はタイトルが入ってたりするのでスキップ
     for (let i = 1; i < authorRoot.children.length; i++) {
       const child = authorRoot.children[i];
       const val = this.escapeHTML(child.innerHTML).trim();
 
       if ("|,、".includes(val)) continue;
-      if (val === "販売者:") break;
+      if (val === sellerLabel) break;
+
+      // USでは "by" の後から著者を収集
+      if (authorPrefix && val === authorPrefix) {
+        foundPrefix = true;
+        continue;
+      }
+      if (!foundPrefix) continue;
 
       authors.push({
         name: val,
-        url: this.getHrefUrl(child) ? amazonURL + this.getHrefUrl(child) : null,
+        url: this.getHrefUrl(child) ? getCurrentRegion().site.domain + this.getHrefUrl(child) : null,
       });
     }
     return authors;
@@ -218,7 +229,7 @@ class Parse {
     const bookLinkElement = bookElement.getElementsByClassName(
       "a-link-normal a-text-normal"
     )[0];
-    return amazonURL + this.getHrefUrl(bookLinkElement);
+    return getCurrentRegion().site.domain + this.getHrefUrl(bookLinkElement);
   }
 }
 

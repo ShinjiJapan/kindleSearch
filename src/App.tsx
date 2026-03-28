@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { initializeIcons } from "@fluentui/react/lib/Icons";
 import { appVM } from "./AppVM";
 import BookItem from "./components/bookItem/BookItem";
@@ -6,10 +6,27 @@ import styled from "styled-components";
 import ToolBar from "./components/toolbar/ToolBar";
 import Footer from "./components/footer/Footer";
 import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
+import InitialSetupDialog from "./components/setup/InitialSetupDialog";
 initializeIcons(/* optional base url */);
 
 const App = (): React.ReactElement => {
+  const [isSetupDone, setIsSetupDone] = useState(
+    () => localStorage.getItem("kindleSearch_region") !== null
+  );
+
   appVM.useBind();
+
+  if (!isSetupDone) {
+    return (
+      <InitialSetupDialog
+        onComplete={() => {
+          setIsSetupDone(true);
+          window.location.reload();
+        }}
+      />
+    );
+  }
+
   return (
     <Root>
       <ToolBar />

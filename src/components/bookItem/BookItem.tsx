@@ -6,6 +6,7 @@ import { Rating } from "@fluentui/react/lib/Rating";
 import { Link } from "@fluentui/react/lib/Link";
 import { IconButton } from "@fluentui/react";
 import { appVM } from "../../AppVM";
+import { getCurrentRegion } from "../../config/RegionConfig";
 
 const BookItem = (props: BookItemModel): React.ReactElement => {
   return (
@@ -24,7 +25,7 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
             ) : (
               <React.Fragment />
             )}
-            <div>著者</div>
+            <div>{getCurrentRegion().labels.author}</div>
             <Authors>
               {props.authors.map((x, i) => (
                 <AuthorRow key={x.name + i}>
@@ -37,7 +38,7 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
                   )}
                   <MuteAuthorButton
                     iconProps={{ iconName: "Cancel" }}
-                    title="NG著者に追加"
+                    title={getCurrentRegion().labels.addMuteAuthor}
                     onClick={() => {
                       appVM.toolBarVM.settingsVM.addMuteAuthor(x.name);
                     }}
@@ -45,7 +46,7 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
                 </AuthorRow>
               ))}
             </Authors>
-            <Price>価格: {props.price}</Price>
+            <Price>{getCurrentRegion().labels.price} {props.price}</Price>
 
             {props.star === 0 ? (
               <React.Fragment />

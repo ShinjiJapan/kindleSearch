@@ -1,4 +1,5 @@
 import { BindableBase } from "../../BindableBase";
+import { getCurrentRegion } from "../../config/RegionConfig";
 
 export class UnlimitedOnlyCheckboxVM extends BindableBase {
   public constructor() {
@@ -6,7 +7,7 @@ export class UnlimitedOnlyCheckboxVM extends BindableBase {
     this.checked = localStorage.getItem("isUnlimitedOnly") === "true";
   }
 
-  public label = "Unlimited対象作品のみ";
+  public label = getCurrentRegion().labels.unlimitedOnly;
   public checked = false;
 
   public onChange = (

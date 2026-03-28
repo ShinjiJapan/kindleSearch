@@ -1,5 +1,6 @@
 import { IDatePickerStrings, mergeStyleSets } from "@fluentui/react";
 import { BindableBase } from "../../BindableBase";
+import { getCurrentRegion } from "../../config/RegionConfig";
 
 export const controlClass = mergeStyleSets({
   control: {
@@ -8,20 +9,7 @@ export const controlClass = mergeStyleSets({
   },
 });
 
-const months = [
-  "1月",
-  "2月",
-  "3月",
-  "4月",
-  "5月",
-  "6月",
-  "7月",
-  "8月",
-  "9月",
-  "10月",
-  "11月",
-  "12月",
-];
+const months = getCurrentRegion().labels.months;
 
 export const DayPickerStrings: IDatePickerStrings = {
   months: months,

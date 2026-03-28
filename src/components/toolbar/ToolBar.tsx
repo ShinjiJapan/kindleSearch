@@ -14,6 +14,7 @@ import CategorySelector from "./CategorySelector";
 import DetailArea from "./DetailArea";
 import Favorite from "./Favorite";
 import Settings from "./Settings";
+import { getCurrentRegion } from "../../config/RegionConfig";
 
 initializeIcons(/* optional base url */);
 
@@ -36,17 +37,17 @@ const ToolBar = (): React.ReactElement => {
 
             <DetailArea />
 
-            <SearchButton text="検索" onClick={() => viewModel.onSearchAsync()} />
+            <SearchButton text={getCurrentRegion().labels.search} onClick={() => viewModel.onSearchAsync()} />
           </AmazonCondition>
         </Wrapper>
 
         <Wrapper>
           <LocalCondition>
-            <Label>ローカル条件</Label>
+            <Label>{getCurrentRegion().labels.localCondition}</Label>
             <LocalSearchWord />
-            <span>を含む</span>
+            <span>{getCurrentRegion().labels.include}</span>
             <LocalMuteWord />
-            <span>を含まない</span>
+            <span>{getCurrentRegion().labels.exclude}</span>
             <LocalSorter />
           </LocalCondition>
         </Wrapper>

@@ -33,3 +33,4 @@ memo
 .claude
 .playwright-mcp
 
+vite.config.ts

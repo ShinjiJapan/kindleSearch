@@ -5,6 +5,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
+      "/api-us": {
+        target: "https://www.amazon.com",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api-us/, ""),
+      },
       "/api": {
         target: "https://www.amazon.co.jp",
         changeOrigin: true,

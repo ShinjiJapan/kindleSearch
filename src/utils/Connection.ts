@@ -1,6 +1,10 @@
 import { chromeUtil } from "./Chrome";
+import { getCurrentRegion } from "../config/RegionConfig";
 
-const baseUrl = "/api/s";
+function getBaseUrl(): string {
+  const region = getCurrentRegion();
+  return region.id === "US" ? "/api-us/s" : "/api/s";
+}
 
 class Connection {
   /** Urlパラメータ文字列を作成 */
@@ -49,7 +53,7 @@ class Connection {
     const paramsString = this.createUrlParamString(params);
     return await chromeUtil.sendMessage<string>({
       type: "fetch",
-      url: "https://www.amazon.co.jp" + url + paramsString,
+      url: getCurrentRegion().site.domain + url + paramsString,
     });
   };
 
@@ -58,7 +62,7 @@ class Connection {
     params: UrlParams,
     page: string
   ): Promise<string> => {
-    return await this.getAsync(baseUrl, { ...params, page: page });
+    return await this.getAsync(getBaseUrl(), { ...params, page: page });
   };
 }
 
