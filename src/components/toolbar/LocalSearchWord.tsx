@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { appVM } from "../../AppVM";
 import { TextField } from "@fluentui/react/lib/TextField";
 const LocalSearchWord = (): React.ReactElement => {
-  const viewModel = appVM.toolBarVM.localSearchWrodVM;
+  const viewModel = appVM.toolBarVM.localSearchWordVM;
   viewModel.useBind();
   return <SearchTextField {...viewModel} />;
 };

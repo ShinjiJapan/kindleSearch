@@ -30,7 +30,7 @@ class Connection {
       return await this.getAsyncServer(url, params);
     } else {
       // Chrome拡張として実行の場合
-      return await this.getAsyncExtention(url, params);
+      return await this.getAsyncExtension(url, params);
     }
   };
 
@@ -46,7 +46,7 @@ class Connection {
     return await response.text();
   };
 
-  private getAsyncExtention = async (
+  private getAsyncExtension = async (
     url: string,
     params?: { [key: string]: string }
   ): Promise<string> => {

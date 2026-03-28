@@ -9,36 +9,36 @@ export const controlClass = mergeStyleSets({
   },
 });
 
-const months = getCurrentRegion().labels.months;
-
-export const DayPickerStrings: IDatePickerStrings = {
-  months: months,
-
-  shortMonths: months,
-
-  days: [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ],
-
-  shortDays: ["S", "M", "T", "W", "T", "F", "S"],
-
-  goToToday: "Go to today",
-  prevMonthAriaLabel: "Go to previous month",
-  nextMonthAriaLabel: "Go to next month",
-  prevYearAriaLabel: "Go to previous year",
-  nextYearAriaLabel: "Go to next year",
-  closeButtonAriaLabel: "Close date picker",
-};
+function createDayPickerStrings(): IDatePickerStrings {
+  const months = getCurrentRegion().labels.months;
+  return {
+    months: months,
+    shortMonths: months,
+    days: [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    shortDays: ["S", "M", "T", "W", "T", "F", "S"],
+    goToToday: "Go to today",
+    prevMonthAriaLabel: "Go to previous month",
+    nextMonthAriaLabel: "Go to next month",
+    prevYearAriaLabel: "Go to previous year",
+    nextYearAriaLabel: "Go to next year",
+    closeButtonAriaLabel: "Close date picker",
+  };
+}
 
 export default class TermVM extends BindableBase {
   public value: Date | undefined;
-  public strings = DayPickerStrings;
+  public strings = createDayPickerStrings();
+  public refreshStrings = (): void => {
+    this.strings = createDayPickerStrings();
+  };
   public formatDate = (date?: Date): string => {
     return date ? date.toLocaleDateString() : "";
   };

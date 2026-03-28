@@ -47,22 +47,22 @@ class Parse {
 
   /** 検索結果の総ページ数を取得 */
   private getPageCount = (elm: Element): number => {
-    let pagenation = elm.getElementsByClassName("a-pagination")[0];
+    let pagination = elm.getElementsByClassName("a-pagination")[0];
 
     // 一部ユーザーでs-pagination-stripに変わっている。戻ることも?
-    if (!pagenation) {
-      pagenation = elm.getElementsByClassName("s-pagination-strip")[0];
+    if (!pagination) {
+      pagination = elm.getElementsByClassName("s-pagination-strip")[0];
     }
 
-    if (!pagenation) return 1;
+    if (!pagination) return 1;
 
-    //pagenation.childrenだったがpagenation.children[0].childrenに変更されたので両対応
-    const elemets = Array.from(pagenation.children).concat(
-      Array.from(pagenation.children[0].children)
+    //pagination.childrenだったがpagination.children[0].childrenに変更されたので両対応
+    const elements = Array.from(pagination.children).concat(
+      Array.from(pagination.children[0].children)
     ) as HTMLElement[];
 
     return Math.max(
-      ...(elemets.map((child) => +child.innerText).filter((x) => x) as any)
+      ...(elements.map((child) => +child.innerText).filter((x) => x) as any)
     );
   };
 

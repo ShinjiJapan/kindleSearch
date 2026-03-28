@@ -50,6 +50,11 @@ export default class ToolBarVM extends BindableBase {
       { key: "authorDesc", text: localSort.authorDesc },
     ];
     this.localSorterVM.onPropertyChanged();
+    // 日付ピッカーの月名ラベル更新
+    this.fromDateVM.refreshStrings();
+    this.toDateVM.refreshStrings();
+    this.fromDateVM.onPropertyChanged();
+    this.toDateVM.onPropertyChanged();
     // カテゴリ切替
     this.categorySelectorVM.switchRegion(settings.region);
     if (settings.defaultCategory) {
@@ -154,7 +159,7 @@ export default class ToolBarVM extends BindableBase {
 
   private getRhQueryString = (is16: boolean): string => {
     const common = [
-      this.autherQueryString,
+      this.authorQueryString,
       this.unlimitedQueryString,
       this.termQueryString,
       this.priceQueryString,
@@ -169,7 +174,7 @@ export default class ToolBarVM extends BindableBase {
     return "n:" + this.categorySelectorVM.selectedKey;
   }
 
-  private get autherQueryString(): string {
+  private get authorQueryString(): string {
     return this.SearchAuthorVM.value ? "p_27:" + this.SearchAuthorVM.value : "";
   }
 
@@ -264,7 +269,7 @@ export default class ToolBarVM extends BindableBase {
   });
 
   /** 「以下の語句を含む」 */
-  public localSearchWrodVM = new ExecFilterTextFieldVM(() => {
+  public localSearchWordVM = new ExecFilterTextFieldVM(() => {
     this.execFilter();
     appVM.onPropertyChanged();
   });
@@ -281,8 +286,8 @@ export default class ToolBarVM extends BindableBase {
     this.filteredBooks = this.books
       .filter(
         (book) =>
-          (!this.localSearchWrodVM.value ||
-            this.isMatch(book, this.localSearchWrodVM.splitedWords)) &&
+          (!this.localSearchWordVM.value ||
+            this.isMatch(book, this.localSearchWordVM.splitedWords)) &&
           !this.isMatch(book, this.localMuteWordVM.splitedWords) &&
           !this.isTitleMatch(book, globalMuteWords) &&
           !this.isAuthorMatch(book, globalMuteAuthors)
@@ -359,7 +364,7 @@ export default class ToolBarVM extends BindableBase {
       minPrice: this.MinPriceVM.value,
       maxPrice: this.MaxPriceVM.value,
       node: this.NodeVM.value,
-      localSearchWord: this.localSearchWrodVM.value || "",
+      localSearchWord: this.localSearchWordVM.value || "",
       localMuteWord: this.localMuteWordVM.value || "",
       localSort: this.localSorterVM.selectedKey,
     };
@@ -376,8 +381,8 @@ export default class ToolBarVM extends BindableBase {
     this.MinPriceVM.value = fav.minPrice;
     this.MaxPriceVM.value = fav.maxPrice;
     this.NodeVM.value = fav.node;
-    this.localSearchWrodVM.value = fav.localSearchWord;
-    this.localSearchWrodVM.splitedWords = fav.localSearchWord
+    this.localSearchWordVM.value = fav.localSearchWord;
+    this.localSearchWordVM.splitedWords = fav.localSearchWord
       .split(" ")
       .filter((x) => x)
       .map((x) => x.toLocaleLowerCase());
@@ -399,7 +404,7 @@ export default class ToolBarVM extends BindableBase {
     this.MinPriceVM.onPropertyChanged();
     this.MaxPriceVM.onPropertyChanged();
     this.NodeVM.onPropertyChanged();
-    this.localSearchWrodVM.onPropertyChanged();
+    this.localSearchWordVM.onPropertyChanged();
     this.localMuteWordVM.onPropertyChanged();
     this.localSorterVM.onPropertyChanged();
   };
