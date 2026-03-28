@@ -1,5 +1,5 @@
 import { BindableBase } from "../../BindableBase";
-import { IDropdownOption } from "office-ui-fabric-react/lib/Dropdown";
+import { IDropdownOption } from "@fluentui/react/lib/Dropdown";
 
 export class AmazonSortDropdownVM extends BindableBase {
   public constructor() {

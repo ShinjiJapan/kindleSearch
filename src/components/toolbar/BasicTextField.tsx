@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "office-ui-fabric-react";
+import { TextField } from "@fluentui/react";
 import { BasicTextFieldVM } from "./BasicTextFieldVM";
 
 const BasicTextField = (props: {

@@ -1,11 +1,11 @@
 import React from "react";
-import { initializeIcons } from "office-ui-fabric-react/lib/Icons";
+import { initializeIcons } from "@fluentui/react/lib/Icons";
 import { appVM } from "./AppVM";
 import BookItem from "./components/bookItem/BookItem";
 import styled from "styled-components";
 import ToolBar from "./components/toolbar/ToolBar";
 import Footer from "./components/footer/Footer";
-import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
+import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
 initializeIcons(/* optional base url */);
 
 const App = (): React.ReactElement => {

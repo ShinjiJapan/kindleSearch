@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "office-ui-fabric-react";
+import { IconButton } from "@fluentui/react";
 import styled from "styled-components";
 import BasicTextField from "./BasicTextField";
 import { appVM } from "../../AppVM";

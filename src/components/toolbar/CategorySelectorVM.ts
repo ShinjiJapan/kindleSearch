@@ -3,7 +3,7 @@ import {
   DropdownMenuItemType,
   IDropdownOption,
   IDropdownStyles,
-} from "office-ui-fabric-react/lib/components/Dropdown/Dropdown.types";
+} from "@fluentui/react/lib/Dropdown";
 
 const categories: IDropdownOption[] = [
   {

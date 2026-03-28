@@ -1,6 +1,6 @@
 import React from "react";
 import { appVM } from "../../AppVM";
-import { Checkbox } from "office-ui-fabric-react/lib/components/Checkbox/Checkbox";
+import { Checkbox } from "@fluentui/react/lib/Checkbox";
 const UnlimitedOnlyCheckbox = (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.unlimitedOnlyCheckboxVM;
   viewModel.useBind();

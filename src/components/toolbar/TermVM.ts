@@ -1,4 +1,4 @@
-import { IDatePickerStrings, mergeStyleSets } from "office-ui-fabric-react";
+import { IDatePickerStrings, mergeStyleSets } from "@fluentui/react";
 import { BindableBase } from "../../BindableBase";
 
 export const controlClass = mergeStyleSets({

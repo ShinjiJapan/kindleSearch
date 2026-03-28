@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DatePicker } from "office-ui-fabric-react";
+import { DatePicker } from "@fluentui/react";
 import { appVM } from "../../AppVM";
 
 const Term = (props: { fromTo: "from" | "to" }): React.ReactElement => {

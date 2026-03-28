@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Dropdown } from "office-ui-fabric-react/lib/components/Dropdown/Dropdown";
+import { Dropdown } from "@fluentui/react/lib/Dropdown";
 import { appVM } from "../../AppVM";
 const AmazonSortDropdown = (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.amazonSortDropdownVM;

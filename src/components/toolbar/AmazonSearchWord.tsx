@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { appVM } from "../../AppVM";
-import { SearchBox } from "office-ui-fabric-react/lib/components/SearchBox/SearchBox";
+import { SearchBox } from "@fluentui/react/lib/SearchBox";
 const AmazonSortDropdown = (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.amazonSearchWordVM;
   viewModel.useBind();

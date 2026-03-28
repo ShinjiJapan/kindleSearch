@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { appVM } from "../../AppVM";
-import { TextField } from "office-ui-fabric-react/lib/components/TextField/TextField";
+import { TextField } from "@fluentui/react/lib/TextField";
 const LocalSearchWord = (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.localSearchWrodVM;
   viewModel.useBind();

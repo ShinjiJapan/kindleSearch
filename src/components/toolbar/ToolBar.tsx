@@ -1,7 +1,7 @@
 import React from "react";
-import { initializeIcons } from "office-ui-fabric-react/lib/Icons";
+import { initializeIcons } from "@fluentui/react/lib/Icons";
 import styled from "styled-components";
-import { PrimaryButton } from "office-ui-fabric-react/lib/Button";
+import { PrimaryButton } from "@fluentui/react/lib/Button";
 import { appVM } from "../../AppVM";
 import AmazonSortDropdown from "./AmazonSortDropdown";
 import AmazonSearchWord from "./AmazonSearchWord";

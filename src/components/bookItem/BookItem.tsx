@@ -2,8 +2,8 @@ import React from "react";
 
 import { BookItemModel } from "./BookItemModel";
 import styled from "styled-components";
-import { Rating } from "office-ui-fabric-react/lib/Rating";
-import { Link } from "office-ui-fabric-react/lib/Link";
+import { Rating } from "@fluentui/react/lib/Rating";
+import { Link } from "@fluentui/react/lib/Link";
 
 const BookItem = (props: BookItemModel): React.ReactElement => {
   return (

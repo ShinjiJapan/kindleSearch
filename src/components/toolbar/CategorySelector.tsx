@@ -1,6 +1,6 @@
 import React from "react";
 import { appVM } from "../../AppVM";
-import { Dropdown } from "office-ui-fabric-react/lib/index";
+import { Dropdown } from "@fluentui/react/lib/Dropdown";
 import styled from "styled-components";
 
 const CategorySelector = (): React.ReactElement => {
