@@ -14,8 +14,20 @@ import { BasicTextFieldVM } from "./BasicTextFieldVM";
 import DetailAreaVM from "./DetailAreaVM";
 import FavoriteVM from "./FavoriteVM";
 import { FavoriteModel } from "./FavoriteModel";
+import SettingsVM from "./SettingsVM";
+import { SettingsModel } from "./SettingsModel";
 
 export default class ToolBarVM extends BindableBase {
+  /** 設定 */
+  public settingsVM = new SettingsVM((settings: SettingsModel) => {
+    this.amazonSortDropdownVM.selectedKey = settings.defaultSort;
+    this.amazonSortDropdownVM.onPropertyChanged();
+    this.categorySelectorVM.selectedKey = settings.defaultCategory;
+    this.categorySelectorVM.onPropertyChanged();
+    this.execFilter();
+    appVM.onPropertyChanged();
+  });
+
   /** amazon検索ソート順 */
   public amazonSortDropdownVM = new AmazonSortDropdownVM();
 
@@ -228,12 +240,16 @@ export default class ToolBarVM extends BindableBase {
 
   /** 「ローカル条件」を反映 */
   private execFilter = (): void => {
+    const globalMuteWords = this.settingsVM.parsedMuteWords;
+    const globalMuteAuthors = this.settingsVM.parsedMuteAuthors;
     this.filteredBooks = this.books
       .filter(
         (book) =>
           (!this.localSearchWrodVM.value ||
             this.isMatch(book, this.localSearchWrodVM.splitedWords)) &&
-          !this.isMatch(book, this.localMuteWordVM.splitedWords)
+          !this.isMatch(book, this.localMuteWordVM.splitedWords) &&
+          !this.isTitleMatch(book, globalMuteWords) &&
+          !this.isAuthorMatch(book, globalMuteAuthors)
       )
       .sort((a, b) => {
         switch (this.localSorterVM.selectedKey) {
@@ -264,6 +280,18 @@ export default class ToolBarVM extends BindableBase {
         book.authors.some((author) =>
           author.name.toLocaleLowerCase().includes(word)
         )
+      )
+    );
+  };
+
+  private isTitleMatch = (book: BookItemModel, words: string[]): boolean => {
+    return words.some((word) => book.title.toLocaleLowerCase().includes(word));
+  };
+
+  private isAuthorMatch = (book: BookItemModel, authors: string[]): boolean => {
+    return authors.some((a) =>
+      book.authors.some((author) =>
+        author.name.toLocaleLowerCase() === a
       )
     );
   };

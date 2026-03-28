@@ -5,7 +5,7 @@ import {
   IDropdownStyles,
 } from "@fluentui/react/lib/Dropdown";
 
-const categories: IDropdownOption[] = [
+export const categories: IDropdownOption[] = [
   {
     key: "2250738051",
     text: "指定なし",

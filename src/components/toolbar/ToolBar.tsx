@@ -13,6 +13,7 @@ import Term from "./Term";
 import CategorySelector from "./CategorySelector";
 import DetailArea from "./DetailArea";
 import Favorite from "./Favorite";
+import Settings from "./Settings";
 
 initializeIcons(/* optional base url */);
 
@@ -50,9 +51,10 @@ const ToolBar = (): React.ReactElement => {
           </LocalCondition>
         </Wrapper>
       </ConditionsArea>
-      <FavoriteArea>
+      <IconsArea>
         <Favorite />
-      </FavoriteArea>
+        <Settings />
+      </IconsArea>
     </Root>
   );
 };
@@ -99,7 +101,7 @@ const ConditionsArea = styled.div`
   flex: 1;
 `;
 
-const FavoriteArea = styled.div`
+const IconsArea = styled.div`
   display: flex;
   align-items: center;
   height: 40px;

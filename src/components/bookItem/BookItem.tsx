@@ -4,6 +4,8 @@ import { BookItemModel } from "./BookItemModel";
 import styled from "styled-components";
 import { Rating } from "@fluentui/react/lib/Rating";
 import { Link } from "@fluentui/react/lib/Link";
+import { IconButton } from "@fluentui/react";
+import { appVM } from "../../AppVM";
 
 const BookItem = (props: BookItemModel): React.ReactElement => {
   return (
@@ -24,17 +26,24 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
             )}
             <div>著者</div>
             <Authors>
-              {props.authors.map((x, i) =>
-                x.url ? (
-                  <div key={x.name + i}>
+              {props.authors.map((x, i) => (
+                <AuthorRow key={x.name + i}>
+                  {x.url ? (
                     <Link href={x.url} target="_blank">
                       {x.name}
                     </Link>
-                  </div>
-                ) : (
-                  <div key={x.name + i}>{x.name}</div>
-                )
-              )}
+                  ) : (
+                    <span>{x.name}</span>
+                  )}
+                  <MuteAuthorButton
+                    iconProps={{ iconName: "Cancel" }}
+                    title="NG著者に追加"
+                    onClick={() => {
+                      appVM.toolBarVM.settingsVM.addMuteAuthor(x.name);
+                    }}
+                  />
+                </AuthorRow>
+              ))}
             </Authors>
             <Price>価格: {props.price}</Price>
 
@@ -63,6 +72,25 @@ const Kindle = styled.span`
 
 const Authors = styled.div`
   padding-left: 4px;
+`;
+
+const AuthorRow = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const MuteAuthorButton = styled(IconButton)`
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin-left: 2px;
+  color: #999;
+  &:hover {
+    color: #c00;
+  }
+  i {
+    font-size: 10px;
+  }
 `;
 
 const Price = styled.div`
