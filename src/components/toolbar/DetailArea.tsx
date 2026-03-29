@@ -3,7 +3,7 @@ import { IconButton } from "@fluentui/react";
 import styled from "styled-components";
 import BasicTextField from "./BasicTextField";
 import { appVM } from "../../AppVM";
-import { getCurrentRegion } from "../../config/RegionConfig";
+import { msg } from "../../utils/i18n";
 
 export default (): React.ReactElement => {
   const viewModel = appVM.toolBarVM.detailAreaVM;
@@ -16,9 +16,9 @@ export default (): React.ReactElement => {
             iconProps={{ iconName: "SkypeCircleMinus" }}
             onClick={viewModel.onClick}
           />
-          <AdditionalLabel>{getCurrentRegion().labels.author}</AdditionalLabel>
+          <AdditionalLabel>{msg("author")}</AdditionalLabel>
           <BasicTextField viewModel={appVM.toolBarVM.SearchAuthorVM} />
-          <AdditionalLabel>{getCurrentRegion().labels.priceLabel}</AdditionalLabel>
+          <AdditionalLabel>{msg("priceLabel")}</AdditionalLabel>
           <RightTextField viewModel={appVM.toolBarVM.MinPriceVM} />
           <span>～</span>
           <RightTextField viewModel={appVM.toolBarVM.MaxPriceVM} />

@@ -10,7 +10,6 @@ export default class SettingsVM extends BindableBase {
   public globalMuteAuthors: string;
   public defaultSort: string;
   public defaultCategory: string;
-  public language: string;
   public region: string;
 
   private onApply: (settings: SettingsModel) => void;
@@ -23,7 +22,6 @@ export default class SettingsVM extends BindableBase {
     this.globalMuteAuthors = saved.globalMuteAuthors;
     this.defaultSort = saved.defaultSort;
     this.defaultCategory = saved.defaultCategory;
-    this.language = saved.language;
     this.region = saved.region;
     // デフォルト値が設定されている場合、起動時にlocalStorageへ反映
     if (this.defaultSort) {
@@ -50,7 +48,6 @@ export default class SettingsVM extends BindableBase {
       globalMuteAuthors: this.globalMuteAuthors,
       defaultSort: this.defaultSort,
       defaultCategory: this.defaultCategory,
-      language: this.language,
       region: this.region,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));

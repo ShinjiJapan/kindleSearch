@@ -6,7 +6,7 @@ import { Rating } from "@fluentui/react/lib/Rating";
 import { Link } from "@fluentui/react/lib/Link";
 import { IconButton } from "@fluentui/react";
 import { appVM } from "../../AppVM";
-import { getCurrentRegion } from "../../config/RegionConfig";
+import { msg } from "../../utils/i18n";
 
 const BookItem = (props: BookItemModel): React.ReactElement => {
   return (
@@ -25,7 +25,7 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
             ) : (
               <React.Fragment />
             )}
-            <div>{getCurrentRegion().labels.author}</div>
+            <div>{msg("author")}</div>
             <Authors>
               {props.authors.map((x, i) => (
                 <AuthorRow key={x.name + i}>
@@ -38,7 +38,7 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
                   )}
                   <MuteAuthorButton
                     iconProps={{ iconName: "Cancel" }}
-                    title={getCurrentRegion().labels.addMuteAuthor}
+                    title={msg("addMuteAuthor")}
                     onClick={() => {
                       appVM.toolBarVM.settingsVM.addMuteAuthor(x.name);
                     }}
@@ -46,7 +46,7 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
                 </AuthorRow>
               ))}
             </Authors>
-            <Price>{getCurrentRegion().labels.price} {props.price}</Price>
+            <Price>{msg("price")} {props.price}</Price>
 
             {props.star === 0 ? (
               <React.Fragment />

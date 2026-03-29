@@ -1,6 +1,6 @@
 import { BindableBase } from "../../BindableBase";
 import { appVM } from "../../AppVM";
-import { getCurrentRegion } from "../../config/RegionConfig";
+import { msg } from "../../utils/i18n";
 
 export default class extends BindableBase {
   public get hasMorePage(): boolean {
@@ -8,6 +8,6 @@ export default class extends BindableBase {
   }
 
   public get label(): string {
-    return `${getCurrentRegion().labels.moreResults} ${appVM.toolBarVM.logicalCurrentPage} / ${appVM.toolBarVM.logicalPageCount}`;
+    return `${msg("moreResults")} ${appVM.toolBarVM.logicalCurrentPage} / ${appVM.toolBarVM.logicalPageCount}`;
   }
 }

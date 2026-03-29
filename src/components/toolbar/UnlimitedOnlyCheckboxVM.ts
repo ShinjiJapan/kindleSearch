@@ -1,5 +1,5 @@
 import { BindableBase } from "../../BindableBase";
-import { getCurrentRegion } from "../../config/RegionConfig";
+import { msg } from "../../utils/i18n";
 
 export class UnlimitedOnlyCheckboxVM extends BindableBase {
   public constructor() {
@@ -7,7 +7,7 @@ export class UnlimitedOnlyCheckboxVM extends BindableBase {
     this.checked = localStorage.getItem("isUnlimitedOnly") === "true";
   }
 
-  public label = getCurrentRegion().labels.unlimitedOnly;
+  public label = msg("unlimitedOnly");
   public checked = false;
 
   public onChange = (

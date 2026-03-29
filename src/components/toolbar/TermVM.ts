@@ -1,6 +1,6 @@
 import { IDatePickerStrings, mergeStyleSets } from "@fluentui/react";
 import { BindableBase } from "../../BindableBase";
-import { getCurrentRegion } from "../../config/RegionConfig";
+import { getMonths } from "../../utils/i18n";
 
 export const controlClass = mergeStyleSets({
   control: {
@@ -10,7 +10,7 @@ export const controlClass = mergeStyleSets({
 });
 
 function createDayPickerStrings(): IDatePickerStrings {
-  const months = getCurrentRegion().labels.months;
+  const months = getMonths();
   return {
     months: months,
     shortMonths: months,

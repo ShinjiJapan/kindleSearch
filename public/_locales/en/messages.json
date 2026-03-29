@@ -1,0 +1,194 @@
+{
+  "appName": {
+    "message": "Kindle Search",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Search and filter Kindle eBooks",
+    "description": "Extension description"
+  },
+  "sortRelevancerank": {
+    "message": "Featured",
+    "description": "Sort option: relevance"
+  },
+  "sortDateDescRank": {
+    "message": "Newest arrivals",
+    "description": "Sort option: newest first"
+  },
+  "sortDateAscRank": {
+    "message": "Oldest first",
+    "description": "Sort option: oldest first"
+  },
+  "sortReviewRank": {
+    "message": "Avg. customer review",
+    "description": "Sort option: review rating"
+  },
+  "price": {
+    "message": "Price:",
+    "description": "Price label with colon shown on book items"
+  },
+  "author": {
+    "message": "Author",
+    "description": "Author label"
+  },
+  "search": {
+    "message": "Search",
+    "description": "Search button text"
+  },
+  "localCondition": {
+    "message": "Local filter",
+    "description": "Local filter section label"
+  },
+  "include": {
+    "message": "Include",
+    "description": "Include filter label"
+  },
+  "exclude": {
+    "message": "Exclude",
+    "description": "Exclude filter label"
+  },
+  "unlimitedOnly": {
+    "message": "Unlimited only",
+    "description": "Kindle Unlimited filter checkbox"
+  },
+  "localSortNone": {
+    "message": "No sorting",
+    "description": "Local sort: none"
+  },
+  "localSortTitleAsc": {
+    "message": "Title (A→Z)",
+    "description": "Local sort: title ascending"
+  },
+  "localSortTitleDesc": {
+    "message": "Title (Z→A)",
+    "description": "Local sort: title descending"
+  },
+  "localSortAuthorAsc": {
+    "message": "Author (A→Z)",
+    "description": "Local sort: author ascending"
+  },
+  "localSortAuthorDesc": {
+    "message": "Author (Z→A)",
+    "description": "Local sort: author descending"
+  },
+  "moreResults": {
+    "message": "Load more",
+    "description": "Load more results button"
+  },
+  "addMuteAuthor": {
+    "message": "Mute author",
+    "description": "Add author to mute list"
+  },
+  "priceLabel": {
+    "message": "Price",
+    "description": "Price label in detail area"
+  },
+  "favorites": {
+    "message": "Favorites",
+    "description": "Favorites panel title"
+  },
+  "favoritesPrompt": {
+    "message": "Enter favorite name",
+    "description": "Prompt when adding a favorite"
+  },
+  "favoritesAdd": {
+    "message": "+ Add current conditions",
+    "description": "Add current conditions to favorites"
+  },
+  "delete": {
+    "message": "Delete",
+    "description": "Delete button"
+  },
+  "month1": {
+    "message": "Jan",
+    "description": "January"
+  },
+  "month2": {
+    "message": "Feb",
+    "description": "February"
+  },
+  "month3": {
+    "message": "Mar",
+    "description": "March"
+  },
+  "month4": {
+    "message": "Apr",
+    "description": "April"
+  },
+  "month5": {
+    "message": "May",
+    "description": "May"
+  },
+  "month6": {
+    "message": "Jun",
+    "description": "June"
+  },
+  "month7": {
+    "message": "Jul",
+    "description": "July"
+  },
+  "month8": {
+    "message": "Aug",
+    "description": "August"
+  },
+  "month9": {
+    "message": "Sep",
+    "description": "September"
+  },
+  "month10": {
+    "message": "Oct",
+    "description": "October"
+  },
+  "month11": {
+    "message": "Nov",
+    "description": "November"
+  },
+  "month12": {
+    "message": "Dec",
+    "description": "December"
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Settings dialog title"
+  },
+  "region": {
+    "message": "Region",
+    "description": "Region selector label"
+  },
+  "muteWords": {
+    "message": "Mute words (one per line)",
+    "description": "Mute words textarea label"
+  },
+  "muteAuthors": {
+    "message": "Mute authors (one per line)",
+    "description": "Mute authors textarea label"
+  },
+  "defaultSort": {
+    "message": "Default sort",
+    "description": "Default sort dropdown label"
+  },
+  "defaultCategory": {
+    "message": "Default category",
+    "description": "Default category dropdown label"
+  },
+  "keepLastUsed": {
+    "message": "Keep last used",
+    "description": "Keep last used option"
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save button"
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Cancel button"
+  },
+  "initialSetupTitle": {
+    "message": "Initial Setup",
+    "description": "Initial setup dialog title"
+  },
+  "initialSetupDescription": {
+    "message": "Select your region",
+    "description": "Initial setup dialog description"
+  }
+}

@@ -3,7 +3,6 @@ export interface SettingsModel {
   globalMuteAuthors: string;
   defaultSort: string;
   defaultCategory: string;
-  language: string;
   region: string;
 }
 
@@ -12,6 +11,5 @@ export const defaultSettings: SettingsModel = {
   globalMuteAuthors: "",
   defaultSort: "",
   defaultCategory: "",
-  language: "ja",
   region: "JP",
 };

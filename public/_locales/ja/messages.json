@@ -1,0 +1,194 @@
+{
+  "appName": {
+    "message": "Kindle Search",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Kindle本の検索・フィルタリング",
+    "description": "Extension description"
+  },
+  "sortRelevancerank": {
+    "message": "アマゾンおすすめ商品",
+    "description": "Sort option: relevance"
+  },
+  "sortDateDescRank": {
+    "message": "出版年月が新しい順番",
+    "description": "Sort option: newest first"
+  },
+  "sortDateAscRank": {
+    "message": "出版年月が古い順番",
+    "description": "Sort option: oldest first"
+  },
+  "sortReviewRank": {
+    "message": "レビューの評価順",
+    "description": "Sort option: review rating"
+  },
+  "price": {
+    "message": "価格:",
+    "description": "Price label with colon shown on book items"
+  },
+  "author": {
+    "message": "著者",
+    "description": "Author label"
+  },
+  "search": {
+    "message": "検索",
+    "description": "Search button text"
+  },
+  "localCondition": {
+    "message": "ローカル条件",
+    "description": "Local filter section label"
+  },
+  "include": {
+    "message": "を含む",
+    "description": "Include filter label"
+  },
+  "exclude": {
+    "message": "を含まない",
+    "description": "Exclude filter label"
+  },
+  "unlimitedOnly": {
+    "message": "Unlimited対象作品のみ",
+    "description": "Kindle Unlimited filter checkbox"
+  },
+  "localSortNone": {
+    "message": "並び替え無し",
+    "description": "Local sort: none"
+  },
+  "localSortTitleAsc": {
+    "message": "作品名(昇順)",
+    "description": "Local sort: title ascending"
+  },
+  "localSortTitleDesc": {
+    "message": "作品名(降順)",
+    "description": "Local sort: title descending"
+  },
+  "localSortAuthorAsc": {
+    "message": "著者名(昇順)",
+    "description": "Local sort: author ascending"
+  },
+  "localSortAuthorDesc": {
+    "message": "著者名(降順)",
+    "description": "Local sort: author descending"
+  },
+  "moreResults": {
+    "message": "結果をもっと表示",
+    "description": "Load more results button"
+  },
+  "addMuteAuthor": {
+    "message": "NG著者に追加",
+    "description": "Add author to mute list"
+  },
+  "priceLabel": {
+    "message": "価格",
+    "description": "Price label in detail area"
+  },
+  "favorites": {
+    "message": "お気に入り",
+    "description": "Favorites panel title"
+  },
+  "favoritesPrompt": {
+    "message": "お気に入り名を入力してください",
+    "description": "Prompt when adding a favorite"
+  },
+  "favoritesAdd": {
+    "message": "＋ 現在の検索条件を追加",
+    "description": "Add current conditions to favorites"
+  },
+  "delete": {
+    "message": "削除",
+    "description": "Delete button"
+  },
+  "month1": {
+    "message": "1月",
+    "description": "January"
+  },
+  "month2": {
+    "message": "2月",
+    "description": "February"
+  },
+  "month3": {
+    "message": "3月",
+    "description": "March"
+  },
+  "month4": {
+    "message": "4月",
+    "description": "April"
+  },
+  "month5": {
+    "message": "5月",
+    "description": "May"
+  },
+  "month6": {
+    "message": "6月",
+    "description": "June"
+  },
+  "month7": {
+    "message": "7月",
+    "description": "July"
+  },
+  "month8": {
+    "message": "8月",
+    "description": "August"
+  },
+  "month9": {
+    "message": "9月",
+    "description": "September"
+  },
+  "month10": {
+    "message": "10月",
+    "description": "October"
+  },
+  "month11": {
+    "message": "11月",
+    "description": "November"
+  },
+  "month12": {
+    "message": "12月",
+    "description": "December"
+  },
+  "settings": {
+    "message": "設定",
+    "description": "Settings dialog title"
+  },
+  "region": {
+    "message": "リージョン",
+    "description": "Region selector label"
+  },
+  "muteWords": {
+    "message": "NGワード（1行に1つ）",
+    "description": "Mute words textarea label"
+  },
+  "muteAuthors": {
+    "message": "NG著者（1行に1つ）",
+    "description": "Mute authors textarea label"
+  },
+  "defaultSort": {
+    "message": "デフォルトソート順",
+    "description": "Default sort dropdown label"
+  },
+  "defaultCategory": {
+    "message": "デフォルトカテゴリ",
+    "description": "Default category dropdown label"
+  },
+  "keepLastUsed": {
+    "message": "前回の値を保持",
+    "description": "Keep last used option"
+  },
+  "save": {
+    "message": "保存",
+    "description": "Save button"
+  },
+  "cancel": {
+    "message": "キャンセル",
+    "description": "Cancel button"
+  },
+  "initialSetupTitle": {
+    "message": "初期設定",
+    "description": "Initial setup dialog title"
+  },
+  "initialSetupDescription": {
+    "message": "リージョンを選択してください",
+    "description": "Initial setup dialog description"
+  }
+}
