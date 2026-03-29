@@ -224,6 +224,7 @@ export default class ToolBarVM extends BindableBase {
           (x) =>
             //重複は除外
             x.authors[0] && // スポンサープロダクト商品が混ざることがあり、その場合x.authorsが取得できない
+            book.authors[0] && // 新しい本のauthorsも空の場合がある
             x.title === book.title &&
             x.authors[0].name === book.authors[0].name
         )

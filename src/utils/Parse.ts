@@ -32,17 +32,24 @@ class Parse {
   };
 
   private hasNoResult = (div: HTMLHtmlElement): boolean => {
-    if (
-      div.getElementsByClassName(
-        "a-size-base a-spacing-base a-color-base a-text-normal"
-      ).length > 0
-    )
-      return true;
+    // テキストベースの判定（メイン）
+    const html = div.innerHTML;
+    const texts = getCurrentRegion().parse.noResultTexts;
+    if (html.includes(texts[0]) && html.includes(texts[1])) return true;
 
-    return (
-      div.innerHTML.includes(getCurrentRegion().parse.noResultTexts[0]) &&
-      div.innerHTML.includes(getCurrentRegion().parse.noResultTexts[1])
+    // クラスベースの判定（補助: 「すべての結果を表示します」的なリダイレクト検知）
+    // 実際の検索結果アイテムが存在する場合はfalse（誤検知防止）
+    const noResultEl = div.getElementsByClassName(
+      "a-size-base a-spacing-base a-color-base a-text-normal"
     );
+    if (noResultEl.length > 0) {
+      const hasRealResults =
+        div.getElementsByClassName("s-asin").length > 0 ||
+        div.getElementsByClassName("s-image").length > 0;
+      if (!hasRealResults) return true;
+    }
+
+    return false;
   };
 
   /** 検索結果の総ページ数を取得 */
@@ -57,13 +64,17 @@ class Parse {
     if (!pagination) return 1;
 
     //pagination.childrenだったがpagination.children[0].childrenに変更されたので両対応
+    const children0 = pagination.children[0]?.children
+      ? Array.from(pagination.children[0].children)
+      : [];
     const elements = Array.from(pagination.children).concat(
-      Array.from(pagination.children[0].children)
+      children0
     ) as HTMLElement[];
 
-    return Math.max(
-      ...(elements.map((child) => +child.innerText).filter((x) => x) as any)
-    );
+    const pages = elements
+      .map((child) => +(child.innerText || child.textContent || ""))
+      .filter((x) => x);
+    return pages.length > 0 ? Math.max(...pages) : 1;
   };
 
   /** responseのrootNodeからbooksを取得 */
@@ -72,7 +83,9 @@ class Parse {
     if (!results || results.length === 0) return undefined;
     const root = results[0].innerHTML.includes("image")
       ? results[0]
-      : results[1];
+      : results.length > 1
+        ? results[1]
+        : undefined;
     return root ? root.children : undefined;
   }
 
@@ -201,16 +214,21 @@ class Parse {
 
   /** bookElementからタイトルを取得 */
   private getTitle(bookElement: Element): string {
-    // 1階層深くなっていたので両対応
-    const title =
-      (
-        bookElement.getElementsByClassName(
-          "a-size-medium a-color-base a-text-normal"
-        )[0].firstChild as HTMLElement
-      ).innerHTML ||
+    // クラス名が変わることがあるので複数パターン対応
+    const titleEl =
       bookElement.getElementsByClassName(
         "a-size-medium a-color-base a-text-normal"
-      )[0].innerHTML;
+      )[0] ||
+      bookElement.getElementsByClassName(
+        "a-size-base-plus a-color-base a-text-normal"
+      )[0];
+
+    if (!titleEl) throw new Error("title element not found");
+
+    // 1階層深くなっていたので両対応（firstChildがElementの場合とTextNodeの場合）
+    const firstChild = titleEl.firstChild as HTMLElement | null;
+    const title =
+      firstChild?.innerHTML || titleEl.textContent || titleEl.innerHTML;
 
     return this.escapeHTML(title);
   }
@@ -226,9 +244,15 @@ class Parse {
 
   /** bookElementから本購入ページのURLを取得 */
   private getBookURL(bookElement: Element): string {
-    const bookLinkElement = bookElement.getElementsByClassName(
-      "a-link-normal a-text-normal"
-    )[0];
+    // クラス名が変わることがあるので複数パターン対応
+    const bookLinkElement =
+      bookElement.getElementsByClassName(
+        "a-link-normal a-text-normal"
+      )[0] ||
+      bookElement.querySelector(
+        "a.a-link-normal[href*='/dp/']"
+      );
+    if (!bookLinkElement) throw new Error("book link not found");
     return getCurrentRegion().site.domain + this.getHrefUrl(bookLinkElement);
   }
 }

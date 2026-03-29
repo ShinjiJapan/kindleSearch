@@ -3,7 +3,7 @@
   "version": "2.0",
   "name": "__MSG_appName__",
   "description": "__MSG_appDescription__",
-  "default_locale": "ja",
+  "default_locale": "en",
   "action": {
     "default_icon": "icon.png",
     "default_popup": "index.html"
