@@ -28,6 +28,8 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
+    "license": "yarn licenses generate-disclaimer --ignore-platform --ignore-optional --ignore-engines > build\\licenses.txt",
+    "buildl": "vite build && yarn license && powershell compress-archive build build -Force",
     "preview": "vite preview",
     "lint": "eslint -c ./.eslintrc.json src/**/*.{ts,tsx}",
     "lintfix": "eslint --fix -c ./.eslintrc.json src/**/*.{ts,tsx}"
