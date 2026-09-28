@@ -1,2 +1,16 @@
 allowBuilds:
   esbuild: false
+
+# 公開から7日未満のバージョンはインストールしない（分）
+minimumReleaseAge: 10080
+
+# 以前より信頼度（Trusted Publishing / provenance）が下がった版を拒否
+trustPolicy: no-downgrade
+# 公開から30日以上経った版はチェック対象外（provenance導入前の古い正規版の誤検知回避）
+trustPolicyIgnoreAfter: 43200
+
+# 推移的依存が git / tarball URL を参照するのを禁止
+blockExoticSubdeps: true
+
+# 未承認のビルドスクリプトがあれば install を失敗させる
+strictDepBuilds: true
