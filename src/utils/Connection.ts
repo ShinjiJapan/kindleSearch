@@ -3,7 +3,14 @@ import { getCurrentRegion } from "../config/RegionConfig";
 
 function getBaseUrl(): string {
   const region = getCurrentRegion();
-  return region.id === "US" ? "/api-us/s" : "/api/s";
+  switch (region.id) {
+    case "US":
+      return "/api-us/s";
+    case "DE":
+      return "/api-de/s";
+    default:
+      return "/api/s";
+  }
 }
 
 class Connection {

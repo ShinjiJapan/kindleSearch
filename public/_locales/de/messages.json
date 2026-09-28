@@ -4,151 +4,151 @@
     "description": "Extension name"
   },
   "appDescription": {
-    "message": "Search and filter Kindle eBooks",
+    "message": "Kindle eBooks suchen und filtern",
     "description": "Extension description"
   },
   "sortRelevancerank": {
-    "message": "Featured",
+    "message": "Empfohlen",
     "description": "Sort option: relevance"
   },
   "sortDateDescRank": {
-    "message": "Newest arrivals",
+    "message": "Neueste zuerst",
     "description": "Sort option: newest first"
   },
   "sortDateAscRank": {
-    "message": "Oldest first",
+    "message": "Älteste zuerst",
     "description": "Sort option: oldest first"
   },
   "sortReviewRank": {
-    "message": "Avg. customer review",
+    "message": "Durchschn. Kundenbewertung",
     "description": "Sort option: review rating"
   },
   "price": {
-    "message": "Price:",
+    "message": "Preis:",
     "description": "Price label with colon shown on book items"
   },
   "author": {
-    "message": "Author",
+    "message": "Autor",
     "description": "Author label"
   },
   "search": {
-    "message": "Search",
+    "message": "Suche",
     "description": "Search button text"
   },
   "localCondition": {
-    "message": "Local filter",
+    "message": "Lokaler Filter",
     "description": "Local filter section label"
   },
   "include": {
-    "message": "Include",
+    "message": "Einschließen",
     "description": "Include filter label"
   },
   "exclude": {
-    "message": "Exclude",
+    "message": "Ausschließen",
     "description": "Exclude filter label"
   },
   "unlimitedOnly": {
-    "message": "Unlimited only",
+    "message": "Nur Unlimited",
     "description": "Kindle Unlimited filter checkbox"
   },
   "localSortNone": {
-    "message": "No sorting",
+    "message": "Keine Sortierung",
     "description": "Local sort: none"
   },
   "localSortTitleAsc": {
-    "message": "Title (A→Z)",
+    "message": "Titel (A→Z)",
     "description": "Local sort: title ascending"
   },
   "localSortTitleDesc": {
-    "message": "Title (Z→A)",
+    "message": "Titel (Z→A)",
     "description": "Local sort: title descending"
   },
   "localSortAuthorAsc": {
-    "message": "Author (A→Z)",
+    "message": "Autor (A→Z)",
     "description": "Local sort: author ascending"
   },
   "localSortAuthorDesc": {
-    "message": "Author (Z→A)",
+    "message": "Autor (Z→A)",
     "description": "Local sort: author descending"
   },
   "moreResults": {
-    "message": "Load more",
+    "message": "Mehr laden",
     "description": "Load more results button"
   },
   "addMuteAuthor": {
-    "message": "Mute author",
+    "message": "Autor stummschalten",
     "description": "Add author to mute list"
   },
   "priceLabel": {
-    "message": "Price",
+    "message": "Preis",
     "description": "Price label in detail area"
   },
   "favorites": {
-    "message": "Favorites",
+    "message": "Favoriten",
     "description": "Favorites panel title"
   },
   "favoritesPrompt": {
-    "message": "Enter favorite name",
+    "message": "Favoritenname eingeben",
     "description": "Prompt when adding a favorite"
   },
   "favoritesAdd": {
-    "message": "+ Add current conditions",
+    "message": "+ Aktuelle Bedingungen hinzufügen",
     "description": "Add current conditions to favorites"
   },
   "delete": {
-    "message": "Delete",
+    "message": "Löschen",
     "description": "Delete button"
   },
   "month1": {
-    "message": "Jan",
+    "message": "Jan.",
     "description": "January"
   },
   "month2": {
-    "message": "Feb",
+    "message": "Feb.",
     "description": "February"
   },
   "month3": {
-    "message": "Mar",
+    "message": "März",
     "description": "March"
   },
   "month4": {
-    "message": "Apr",
+    "message": "Apr.",
     "description": "April"
   },
   "month5": {
-    "message": "May",
+    "message": "Mai",
     "description": "May"
   },
   "month6": {
-    "message": "Jun",
+    "message": "Juni",
     "description": "June"
   },
   "month7": {
-    "message": "Jul",
+    "message": "Juli",
     "description": "July"
   },
   "month8": {
-    "message": "Aug",
+    "message": "Aug.",
     "description": "August"
   },
   "month9": {
-    "message": "Sep",
+    "message": "Sep.",
     "description": "September"
   },
   "month10": {
-    "message": "Oct",
+    "message": "Okt.",
     "description": "October"
   },
   "month11": {
-    "message": "Nov",
+    "message": "Nov.",
     "description": "November"
   },
   "month12": {
-    "message": "Dec",
+    "message": "Dez.",
     "description": "December"
   },
   "settings": {
-    "message": "Settings",
+    "message": "Einstellungen",
     "description": "Settings dialog title"
   },
   "region": {
@@ -156,119 +156,119 @@
     "description": "Region selector label"
   },
   "muteWords": {
-    "message": "Mute words (one per line)",
+    "message": "Stummgeschaltete Wörter (eins pro Zeile)",
     "description": "Mute words textarea label"
   },
   "muteAuthors": {
-    "message": "Mute authors (one per line)",
+    "message": "Stummgeschaltete Autoren (einer pro Zeile)",
     "description": "Mute authors textarea label"
   },
   "defaultSort": {
-    "message": "Default sort",
+    "message": "Standardsortierung",
     "description": "Default sort dropdown label"
   },
   "defaultCategory": {
-    "message": "Default category",
+    "message": "Standardkategorie",
     "description": "Default category dropdown label"
   },
   "keepLastUsed": {
-    "message": "Keep last used",
+    "message": "Zuletzt verwendete beibehalten",
     "description": "Keep last used option"
   },
   "save": {
-    "message": "Save",
+    "message": "Speichern",
     "description": "Save button"
   },
   "cancel": {
-    "message": "Cancel",
+    "message": "Abbrechen",
     "description": "Cancel button"
   },
   "initialSetupTitle": {
-    "message": "Initial Setup",
+    "message": "Ersteinrichtung",
     "description": "Initial setup dialog title"
   },
   "initialSetupDescription": {
-    "message": "Select your region",
+    "message": "Wählen Sie Ihre Region",
     "description": "Initial setup dialog description"
   },
   "daySunday": {
-    "message": "Sunday",
+    "message": "Sonntag",
     "description": "Sunday"
   },
   "dayMonday": {
-    "message": "Monday",
+    "message": "Montag",
     "description": "Monday"
   },
   "dayTuesday": {
-    "message": "Tuesday",
+    "message": "Dienstag",
     "description": "Tuesday"
   },
   "dayWednesday": {
-    "message": "Wednesday",
+    "message": "Mittwoch",
     "description": "Wednesday"
   },
   "dayThursday": {
-    "message": "Thursday",
+    "message": "Donnerstag",
     "description": "Thursday"
   },
   "dayFriday": {
-    "message": "Friday",
+    "message": "Freitag",
     "description": "Friday"
   },
   "daySaturday": {
-    "message": "Saturday",
+    "message": "Samstag",
     "description": "Saturday"
   },
   "shortDaySun": {
-    "message": "S",
+    "message": "So",
     "description": "Sun (short)"
   },
   "shortDayMon": {
-    "message": "M",
+    "message": "Mo",
     "description": "Mon (short)"
   },
   "shortDayTue": {
-    "message": "T",
+    "message": "Di",
     "description": "Tue (short)"
   },
   "shortDayWed": {
-    "message": "W",
+    "message": "Mi",
     "description": "Wed (short)"
   },
   "shortDayThu": {
-    "message": "T",
+    "message": "Do",
     "description": "Thu (short)"
   },
   "shortDayFri": {
-    "message": "F",
+    "message": "Fr",
     "description": "Fri (short)"
   },
   "shortDaySat": {
-    "message": "S",
+    "message": "Sa",
     "description": "Sat (short)"
   },
   "goToToday": {
-    "message": "Go to today",
+    "message": "Heute",
     "description": "Go to today button"
   },
   "prevMonthAriaLabel": {
-    "message": "Go to previous month",
+    "message": "Vorheriger Monat",
     "description": "Previous month aria label"
   },
   "nextMonthAriaLabel": {
-    "message": "Go to next month",
+    "message": "Nächster Monat",
     "description": "Next month aria label"
   },
   "prevYearAriaLabel": {
-    "message": "Go to previous year",
+    "message": "Vorheriges Jahr",
     "description": "Previous year aria label"
   },
   "nextYearAriaLabel": {
-    "message": "Go to next year",
+    "message": "Nächstes Jahr",
     "description": "Next year aria label"
   },
   "closeDatePicker": {
-    "message": "Close date picker",
+    "message": "Schließen",
     "description": "Close date picker aria label"
   }
 }

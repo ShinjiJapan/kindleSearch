@@ -1,6 +1,6 @@
 import { IDatePickerStrings, mergeStyleSets } from "@fluentui/react";
 import { BindableBase } from "../../BindableBase";
-import { getMonths } from "../../utils/i18n";
+import { getMonths, msg } from "../../utils/i18n";
 
 export const controlClass = mergeStyleSets({
   control: {
@@ -15,21 +15,29 @@ function createDayPickerStrings(): IDatePickerStrings {
     months: months,
     shortMonths: months,
     days: [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
+      msg("daySunday"),
+      msg("dayMonday"),
+      msg("dayTuesday"),
+      msg("dayWednesday"),
+      msg("dayThursday"),
+      msg("dayFriday"),
+      msg("daySaturday"),
     ],
-    shortDays: ["S", "M", "T", "W", "T", "F", "S"],
-    goToToday: "Go to today",
-    prevMonthAriaLabel: "Go to previous month",
-    nextMonthAriaLabel: "Go to next month",
-    prevYearAriaLabel: "Go to previous year",
-    nextYearAriaLabel: "Go to next year",
-    closeButtonAriaLabel: "Close date picker",
+    shortDays: [
+      msg("shortDaySun"),
+      msg("shortDayMon"),
+      msg("shortDayTue"),
+      msg("shortDayWed"),
+      msg("shortDayThu"),
+      msg("shortDayFri"),
+      msg("shortDaySat"),
+    ],
+    goToToday: msg("goToToday"),
+    prevMonthAriaLabel: msg("prevMonthAriaLabel"),
+    nextMonthAriaLabel: msg("nextMonthAriaLabel"),
+    prevYearAriaLabel: msg("prevYearAriaLabel"),
+    nextYearAriaLabel: msg("nextYearAriaLabel"),
+    closeButtonAriaLabel: msg("closeDatePicker"),
   };
 }
 

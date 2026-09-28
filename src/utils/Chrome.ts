@@ -9,11 +9,5 @@ class ChromeUtil {
       });
     });
   };
-
-  public sendTabMessage = (param: Record<string, unknown>): void => {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tab: any) => {
-      chrome.tabs.sendMessage(tab.id, param);
-    });
-  };
 }
 export const chromeUtil = new ChromeUtil();

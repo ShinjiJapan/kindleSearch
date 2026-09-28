@@ -59,7 +59,26 @@ const US: RegionConfig = {
   },
 };
 
-export const REGIONS: Record<string, RegionConfig> = { JP, US };
+const DE: RegionConfig = {
+  id: "DE",
+  site: {
+    domain: "https://www.amazon.de",
+    kindleStoreNode: "530484031",
+    kindleEbooksNode: "530886031",
+    defaultCategoryKey: "530886031",
+    unlimitedFilterId: "9631167031",
+  },
+  parse: {
+    currency: /[0-9,.]+\s?€/,
+    noResultTexts: ["Keine Ergebnisse für", "Versuchen Sie es mit einer anderen"],
+    sellerLabel: "Verkauft von:",
+    authorPrefix: "von",
+    starRatingIndex: 0,
+    authorSeparators: ["|", ",", "、", "und"],
+  },
+};
+
+export const REGIONS: Record<string, RegionConfig> = { JP, US, DE };
 
 const REGION_STORAGE_KEY = "kindleSearch_region";
 

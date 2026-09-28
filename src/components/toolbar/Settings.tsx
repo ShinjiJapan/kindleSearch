@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { appVM } from "../../AppVM";
 import { jpCategories } from "../../config/JPCategories";
 import { usCategories } from "../../config/USCategories";
+import { deCategories } from "../../config/DECategories";
 import { msg } from "../../utils/i18n";
 
 const Settings = (): React.ReactElement => {
@@ -26,7 +27,11 @@ const Settings = (): React.ReactElement => {
   ];
 
   const baseCategoryOptions =
-    viewModel.region === "US" ? usCategories : jpCategories;
+    viewModel.region === "DE"
+      ? deCategories
+      : viewModel.region === "US"
+        ? usCategories
+        : jpCategories;
   const categoryOptions: IDropdownOption[] = [
     { key: "", text: msg("keepLastUsed") },
     ...baseCategoryOptions,
@@ -55,6 +60,7 @@ const Settings = (): React.ReactElement => {
             options={[
               { key: "JP", text: "Amazon.co.jp (日本)" },
               { key: "US", text: "Amazon.com (US)" },
+              { key: "DE", text: "Amazon.de (DE)" },
             ]}
             selectedKey={viewModel.region}
             onChange={(_, opt) => {

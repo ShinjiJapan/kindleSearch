@@ -7,12 +7,15 @@ import { msg } from "../../utils/i18n";
 
 const regionOptions: IDropdownOption[] = [
   { key: "JP", text: "Amazon.co.jp (日本 / Japan)" },
-  { key: "US", text: "Amazon.com (米国 / US)" },
+  { key: "US", text: "Amazon.com (US)" },
+  { key: "DE", text: "Amazon.de (Deutschland / Germany)" },
 ];
 
 function detectDefaultRegion(): string {
   const browserLang = navigator.language || "ja";
-  return browserLang.startsWith("ja") ? "JP" : "US";
+  if (browserLang.startsWith("ja")) return "JP";
+  if (browserLang.startsWith("de")) return "DE";
+  return "US";
 }
 
 interface Props {

@@ -11,6 +11,12 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api-us/, ""),
       },
+      "/api-de": {
+        target: "https://www.amazon.de",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api-de/, ""),
+      },
       "/api": {
         target: "https://www.amazon.co.jp",
         changeOrigin: true,

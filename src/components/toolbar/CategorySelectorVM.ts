@@ -6,11 +6,14 @@ import {
 import { getCurrentRegion, REGIONS } from "../../config/RegionConfig";
 import { jpCategories } from "../../config/JPCategories";
 import { usCategories } from "../../config/USCategories";
+import { deCategories } from "../../config/DECategories";
 
 function getCategoriesForRegion(regionId: string): IDropdownOption[] {
   switch (regionId) {
     case "US":
       return usCategories;
+    case "DE":
+      return deCategories;
     case "JP":
     default:
       return jpCategories;

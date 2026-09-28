@@ -30,6 +30,7 @@ yarn-error.log*
 memo
 
 .sfdx
+.sf
 .claude
 .playwright-mcp
 

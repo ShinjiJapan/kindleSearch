@@ -190,5 +190,85 @@
   "initialSetupDescription": {
     "message": "リージョンを選択してください",
     "description": "Initial setup dialog description"
+  },
+  "daySunday": {
+    "message": "日曜日",
+    "description": "Sunday"
+  },
+  "dayMonday": {
+    "message": "月曜日",
+    "description": "Monday"
+  },
+  "dayTuesday": {
+    "message": "火曜日",
+    "description": "Tuesday"
+  },
+  "dayWednesday": {
+    "message": "水曜日",
+    "description": "Wednesday"
+  },
+  "dayThursday": {
+    "message": "木曜日",
+    "description": "Thursday"
+  },
+  "dayFriday": {
+    "message": "金曜日",
+    "description": "Friday"
+  },
+  "daySaturday": {
+    "message": "土曜日",
+    "description": "Saturday"
+  },
+  "shortDaySun": {
+    "message": "日",
+    "description": "Sun (short)"
+  },
+  "shortDayMon": {
+    "message": "月",
+    "description": "Mon (short)"
+  },
+  "shortDayTue": {
+    "message": "火",
+    "description": "Tue (short)"
+  },
+  "shortDayWed": {
+    "message": "水",
+    "description": "Wed (short)"
+  },
+  "shortDayThu": {
+    "message": "木",
+    "description": "Thu (short)"
+  },
+  "shortDayFri": {
+    "message": "金",
+    "description": "Fri (short)"
+  },
+  "shortDaySat": {
+    "message": "土",
+    "description": "Sat (short)"
+  },
+  "goToToday": {
+    "message": "今日へ",
+    "description": "Go to today button"
+  },
+  "prevMonthAriaLabel": {
+    "message": "前の月へ",
+    "description": "Previous month aria label"
+  },
+  "nextMonthAriaLabel": {
+    "message": "次の月へ",
+    "description": "Next month aria label"
+  },
+  "prevYearAriaLabel": {
+    "message": "前の年へ",
+    "description": "Previous year aria label"
+  },
+  "nextYearAriaLabel": {
+    "message": "次の年へ",
+    "description": "Next year aria label"
+  },
+  "closeDatePicker": {
+    "message": "閉じる",
+    "description": "Close date picker aria label"
   }
 }
