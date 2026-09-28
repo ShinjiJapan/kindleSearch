@@ -43,9 +43,7 @@ const InitialSetupDialog: React.FC<Props> = ({ onComplete }) => {
         title: msg("initialSetupTitle"),
       }}
     >
-      <p style={{ margin: "0 0 16px 0" }}>
-        {msg("initialSetupDescription")}
-      </p>
+      <p style={{ margin: "0 0 16px 0" }}>{msg("initialSetupDescription")}</p>
       <Dropdown
         label={msg("region")}
         options={regionOptions}

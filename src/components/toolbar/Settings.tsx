@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Dialog,
-  DialogType,
-  DialogFooter,
-} from "@fluentui/react/lib/Dialog";
+import { Dialog, DialogType, DialogFooter } from "@fluentui/react/lib/Dialog";
 import { PrimaryButton, DefaultButton, IconButton } from "@fluentui/react";
 import { TextField } from "@fluentui/react/lib/TextField";
 import { Dropdown, IDropdownOption } from "@fluentui/react/lib/Dropdown";
@@ -116,14 +112,8 @@ const Settings = (): React.ReactElement => {
           />
         </Section>
         <DialogFooter>
-          <PrimaryButton
-            text={msg("save")}
-            onClick={viewModel.save}
-          />
-          <DefaultButton
-            text={msg("cancel")}
-            onClick={viewModel.close}
-          />
+          <PrimaryButton text={msg("save")} onClick={viewModel.save} />
+          <DefaultButton text={msg("cancel")} onClick={viewModel.close} />
         </DialogFooter>
       </Dialog>
     </Root>

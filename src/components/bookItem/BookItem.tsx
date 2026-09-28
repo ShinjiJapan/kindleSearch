@@ -46,7 +46,9 @@ const BookItem = (props: BookItemModel): React.ReactElement => {
                 </AuthorRow>
               ))}
             </Authors>
-            <Price>{msg("price")} {props.price}</Price>
+            <Price>
+              {msg("price")} {props.price}
+            </Price>
 
             {props.star === 0 ? (
               <React.Fragment />

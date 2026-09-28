@@ -1,8 +1,5 @@
 import { BindableBase } from "../../BindableBase";
-import {
-  IDropdownOption,
-  IDropdownStyles,
-} from "@fluentui/react/lib/Dropdown";
+import { IDropdownOption, IDropdownStyles } from "@fluentui/react/lib/Dropdown";
 import { getCurrentRegion, REGIONS } from "../../config/RegionConfig";
 import { jpCategories } from "../../config/JPCategories";
 import { usCategories } from "../../config/USCategories";

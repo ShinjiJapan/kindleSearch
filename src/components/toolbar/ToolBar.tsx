@@ -37,7 +37,10 @@ const ToolBar = (): React.ReactElement => {
 
             <DetailArea />
 
-            <SearchButton text={msg("search")} onClick={() => viewModel.onSearchAsync()} />
+            <SearchButton
+              text={msg("search")}
+              onClick={() => viewModel.onSearchAsync()}
+            />
           </AmazonCondition>
         </Wrapper>
 

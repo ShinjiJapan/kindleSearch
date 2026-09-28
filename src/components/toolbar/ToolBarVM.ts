@@ -152,7 +152,8 @@ export default class ToolBarVM extends BindableBase {
 
   private get unlimitedQueryString(): string {
     return this.unlimitedOnlyCheckboxVM.checked
-      ? "p_n_feature_nineteen_browse-bin:" + getCurrentRegion().site.unlimitedFilterId
+      ? "p_n_feature_nineteen_browse-bin:" +
+          getCurrentRegion().site.unlimitedFilterId
       : "";
   }
 
@@ -304,9 +305,7 @@ export default class ToolBarVM extends BindableBase {
 
   private isAuthorMatch = (book: BookItemModel, authors: string[]): boolean => {
     return authors.some((a) =>
-      book.authors.some((author) =>
-        author.name.toLocaleLowerCase() === a
-      )
+      book.authors.some((author) => author.name.toLocaleLowerCase() === a)
     );
   };
 
@@ -331,7 +330,9 @@ export default class ToolBarVM extends BindableBase {
       amazonSort: this.amazonSortDropdownVM.selectedKey,
       unlimitedOnly: this.unlimitedOnlyCheckboxVM.checked,
       category: this.categorySelectorVM.selectedKey,
-      fromDate: this.fromDateVM.value ? this.fromDateVM.value.toISOString() : null,
+      fromDate: this.fromDateVM.value
+        ? this.fromDateVM.value.toISOString()
+        : null,
       toDate: this.toDateVM.value ? this.toDateVM.value.toISOString() : null,
       author: this.SearchAuthorVM.value,
       minPrice: this.MinPriceVM.value,

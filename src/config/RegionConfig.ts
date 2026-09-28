@@ -32,7 +32,10 @@ const JP: RegionConfig = {
   },
   parse: {
     currency: /￥+[0-9,]+/,
-    noResultTexts: ["の結果は見つかりませんでした", "のすべての結果を表示します"],
+    noResultTexts: [
+      "の結果は見つかりませんでした",
+      "のすべての結果を表示します",
+    ],
     sellerLabel: "販売者:",
     authorPrefix: "",
     starRatingIndex: 1,
@@ -70,7 +73,10 @@ const DE: RegionConfig = {
   },
   parse: {
     currency: /[0-9,.]+\s?€/,
-    noResultTexts: ["Keine Ergebnisse für", "Versuchen Sie es mit einer anderen"],
+    noResultTexts: [
+      "Keine Ergebnisse für",
+      "Versuchen Sie es mit einer anderen",
+    ],
     sellerLabel: "Verkauft von:",
     authorPrefix: "von",
     starRatingIndex: 0,

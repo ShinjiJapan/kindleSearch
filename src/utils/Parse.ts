@@ -179,7 +179,8 @@ class Parse {
       authorRoot = authorRoot.children[0];
     }
 
-    const { sellerLabel, authorPrefix, authorSeparators } = getCurrentRegion().parse;
+    const { sellerLabel, authorPrefix, authorSeparators } =
+      getCurrentRegion().parse;
     let foundPrefix = !authorPrefix; // JPではprefixなし→最初から収集開始
 
     // 1件目はタイトルが入ってたりするのでスキップ
@@ -199,7 +200,9 @@ class Parse {
 
       authors.push({
         name: val,
-        url: this.getHrefUrl(child) ? getCurrentRegion().site.domain + this.getHrefUrl(child) : null,
+        url: this.getHrefUrl(child)
+          ? getCurrentRegion().site.domain + this.getHrefUrl(child)
+          : null,
       });
     }
     return authors;
@@ -246,12 +249,8 @@ class Parse {
   private getBookURL(bookElement: Element): string {
     // クラス名が変わることがあるので複数パターン対応
     const bookLinkElement =
-      bookElement.getElementsByClassName(
-        "a-link-normal a-text-normal"
-      )[0] ||
-      bookElement.querySelector(
-        "a.a-link-normal[href*='/dp/']"
-      );
+      bookElement.getElementsByClassName("a-link-normal a-text-normal")[0] ||
+      bookElement.querySelector("a.a-link-normal[href*='/dp/']");
     if (!bookLinkElement) throw new Error("book link not found");
     return getCurrentRegion().site.domain + this.getHrefUrl(bookLinkElement);
   }
